@@ -9,3 +9,4 @@ const HeadMenu = () => {
     </div>
   );
 };
+export default HeadMenu;
