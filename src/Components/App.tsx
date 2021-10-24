@@ -1,7 +1,6 @@
+//import React,{useState} from "react";
 import getFetch from "../api/getFetch";
-import HeadMenu from "../HeadMenu/HeadMenu";
-
-import "";
+import HeadMenu from "./HeadMenu/HeadMenu";
 import "./App.css";
 
 // import {Button} from 'react-bootstrap'
