@@ -1,31 +1,57 @@
-import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
+import {Checkbox} from './elements';
+import {objG, strGenres} from '../../constants'
+import './HeadMenu.css'
 
-function simulateNetworkRequest() {
-  return new Promise((resolve) => setTimeout(resolve, 2000));
+
+let genre:objG={
+  actions:false,
+  cartons:false,
+  comedies:false,
+  fantasies:false,
+  fantastics:false
 }
+;
 
-const HeadMenu = () => {
-  const [isLoading, setLoading] = useState(false);
+function HeadMenu({setObjGenres}:{setObjGenres:(a:objG)=>void}) {
+ 
+  const handlerGenre=(valGenres: strGenres, checked:boolean)=>{
+    genre[valGenres]= checked;
+    
+  }
 
-  useEffect(() => {
-    if (isLoading) {
-      simulateNetworkRequest().then(() => {
-        setLoading(false);
-      });
-    }
-  }, [isLoading]);
-
-  const handleClick = () => setLoading(true);
+  const handleClick=()=>{setObjGenres(genre)}
 
   return (
-    <Button
-      variant="primary"
-      disabled={isLoading}
-      onClick={!isLoading ? handleClick : undefined}
-    >
-      {isLoading ? "Loading…" : "Click to load"}
-    </Button>
+    <>
+      <Navbar variant="dark" bg="dark" expand="lg">
+        <Navbar.Brand href="#home">FilmsTime</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbar-dark-example" />
+        <Navbar.Collapse id="navbar-dark-example">
+          <Nav>
+            <NavDropdown
+              id="nav-dropdown-dark-example"
+              title="Choose genre"
+              menuVariant="dark"
+            >
+              <div className='center green'>
+                <Checkbox label={'Actions'} handlerGenre={handlerGenre}/>
+                <Checkbox label={'Cartons'} handlerGenre={handlerGenre}/>
+                <Checkbox label={'Comedies'} handlerGenre={handlerGenre}/>
+                <Checkbox label={'Fantasies'} handlerGenre={handlerGenre}/>
+                <Checkbox label={'Fantastics'} handlerGenre={handlerGenre}/>
+              </div>
+            </NavDropdown>
+              <Button
+                variant={"primary"}
+                onClick={handleClick}
+              >
+                {"Click to load"}
+              </Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </>
   );
 };
 

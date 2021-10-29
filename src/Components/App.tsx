@@ -1,19 +1,14 @@
-//import React,{useState} from "react";
-import getFetch from "../api/getFetch";
-import HeadMenu from "./HeadMenu/HeadMenu";
-import "./App.css";
-
-// import {Button} from 'react-bootstrap'
-
-// npm install react-bootstrap bootstrap@5.1.3
-// https://react-bootstrap.github.io/components/buttons/
+import {useState} from "react";
+import { HeadMenu } from "./HeadMenu";
+import {initVal} from '../constants'
 
 function App() {
+  const[objGenres,setObjGenres]=useState(initVal)
+  console.log('objGenres in App', objGenres);
+  
   return (
     <>
-      <HeadMenu />
-      {/* <button className="btn btn-success"></button>
-      <Button onC /> */}
+      <HeadMenu setObjGenres={setObjGenres}/>
     </>
   );
 }

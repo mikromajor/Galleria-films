@@ -1,5 +1,5 @@
 import { API_URL, API_KEY } from "../constants";
-
+///movie/popular
 type obj = {};
 
 async function getFetch(url: string) {
