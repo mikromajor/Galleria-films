@@ -1,27 +1,32 @@
-import getFetch from './getFetch'
+import getFetch from "./getFetch";
+import { objGenres, result } from "../constants";
 
-const getGenresMovies=(objGenres:{
-    28: boolean;
-    16: boolean;
-    35: boolean;
-    14: boolean;
-    878: boolean;
-})=>{
+const getGenresMovies = (
+  objGenres: objGenres,
+  setCardsData: (result: any) => any
+) => {
+  let url = "";
+  let chechSameUrl = "";
+  let sum = [];
+  for (const [key, value] of Object.entries(objGenres)) {
+    if (value) sum.push(key);
+  }
 
-    let url=''
-    let sum=[];
-    for (const [key, value] of Object.entries(objGenres)) {
-        if(value) sum.push(key);
-      }
-      console.log('No choosed genre');
-      
-if(sum.length){ url='&with_genres='+ sum.join();
+  if (sum.length) {
+    console.log("now url look like -> ", url);
+    url = "&with_genres=" + sum.join();
+    if (chechSameUrl !== url) {
+      chechSameUrl = url;
+      const arrResults = getFetch(url)
+        .then((obj) => obj)
+        .catch((e) => console.log("ups!!!", e));
+      setCardsData(arrResults);
+    } else {
+      console.log("Choosed the same genre");
+    }
+  } else {
+    console.log("No choozed genre");
+  }
+};
 
-        const result = getFetch(url).then((obj)=>obj)
-        .catch( (e)=>console.log('ups!!!' ,e) );
-        
-        console.log(result);
-    }}
-
-  
 export default getGenresMovies;
