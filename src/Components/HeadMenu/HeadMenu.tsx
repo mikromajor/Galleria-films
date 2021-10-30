@@ -1,26 +1,18 @@
-import { Button, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
+import {useState} from 'react';
+import { Button, Navbar, NavDropdown, Nav } from "react-bootstrap";
+import {initVal} from '../../constants'; 
 import {Checkbox} from './elements';
-import {objG, strGenres} from '../../constants'
+import {getGenresMovies} from '../../api'
 import './HeadMenu.css'
 
+function HeadMenu() {
+ const [objGenres, setObjGenres]=useState(initVal);
 
-let genre:objG={
-  actions:false,
-  cartons:false,
-  comedies:false,
-  fantasies:false,
-  fantastics:false
-}
-;
-
-function HeadMenu({setObjGenres}:{setObjGenres:(a:objG)=>void}) {
- 
-  const handlerGenre=(valGenres: strGenres, checked:boolean)=>{
-    genre[valGenres]= checked;
-    
-  }
-
-  const handleClick=()=>{setObjGenres(genre)}
+  const handlerGenre=(valGenres:'28'|'16'|'35'|'14'|'878', checked:boolean)=>{
+    objGenres[valGenres]=checked;
+    setObjGenres(objGenres)
+  };  
+  
 
   return (
     <>
@@ -35,16 +27,16 @@ function HeadMenu({setObjGenres}:{setObjGenres:(a:objG)=>void}) {
               menuVariant="dark"
             >
               <div className='center green'>
-                <Checkbox label={'Actions'} handlerGenre={handlerGenre}/>
-                <Checkbox label={'Cartons'} handlerGenre={handlerGenre}/>
-                <Checkbox label={'Comedies'} handlerGenre={handlerGenre}/>
-                <Checkbox label={'Fantasies'} handlerGenre={handlerGenre}/>
-                <Checkbox label={'Fantastics'} handlerGenre={handlerGenre}/>
+                <Checkbox label={'Actions'} nmb={28} handlerGenre={handlerGenre}/>
+                <Checkbox label={'Cartons'} nmb={16} handlerGenre={handlerGenre}/>
+                <Checkbox label={'Comedies'} nmb={35} handlerGenre={handlerGenre}/>
+                <Checkbox label={'Fantasies'} nmb={14} handlerGenre={handlerGenre}/>
+                <Checkbox label={'Fantastics'} nmb={878} handlerGenre={handlerGenre}/>
               </div>
             </NavDropdown>
               <Button
                 variant={"primary"}
-                onClick={handleClick}
+                onClick={()=>getGenresMovies(objGenres) }
               >
                 {"Click to load"}
               </Button>
