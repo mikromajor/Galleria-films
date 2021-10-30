@@ -19,7 +19,7 @@ async function getFetch(url: string) {
     );
   } else {
     const result: result = await response.json();
-    console.log(result.results);
+    console.log("in getFetch ->", result.results);
 
     return result.results;
   }

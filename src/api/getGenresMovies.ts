@@ -1,29 +1,17 @@
 import getFetch from "./getFetch";
-import { objGenres, result } from "../constants";
+import { result } from "../constants";
 
 const getGenresMovies = (
-  objGenres: objGenres,
+  genres: string[],
   setCardsData: (result: any) => any
 ) => {
   let url = "";
-  let chechSameUrl = "";
-  let sum = [];
-  for (const [key, value] of Object.entries(objGenres)) {
-    if (value) sum.push(key);
-  }
 
-  if (sum.length) {
-    console.log("now url look like -> ", url);
-    url = "&with_genres=" + sum.join();
-    if (chechSameUrl !== url) {
-      chechSameUrl = url;
-      const arrResults = getFetch(url)
-        .then((obj) => obj)
-        .catch((e) => console.log("ups!!!", e));
-      setCardsData(arrResults);
-    } else {
-      console.log("Choosed the same genre");
-    }
+  if (genres.length) {
+    url = "&with_genres=" + genres.join();
+    const arrResults = getFetch(url)
+      .then((arr_20_Obj) => setCardsData(arr_20_Obj))
+      .catch((e) => console.log("ups!!!", e));
   } else {
     console.log("No choozed genre");
   }

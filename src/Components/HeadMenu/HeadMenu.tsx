@@ -5,7 +5,7 @@ import {
   NavDropdown,
   Nav,
 } from "react-bootstrap";
-import { initVal, valG } from "../../constants";
+//import { initVal, valG } from "../../constants";
 import { Checkbox } from "./elements";
 import { getGenresMovies } from "../../api";
 import "./HeadMenu.css";
@@ -15,14 +15,23 @@ const HeadMenu = ({
 }: {
   setCardsData: (result: any) => any;
 }) => {
-  const [objGenres, setObjGenres] = useState(initVal);
+  const [genres, setGenres] = useState<string[]>([]);
 
   const handlerGenre = (
-    valGenres: valG,
+    valGenre: string,
     checked: boolean
   ) => {
-    objGenres[valGenres] = checked;
-    setObjGenres(objGenres);
+    if (checked) {
+      if (!genres.some((item) => item === valGenre)) {
+        const updatedValues = [...genres, valGenre];
+        setGenres(updatedValues);
+      }
+    } else {
+      const updatedValues = genres.filter(
+        (el) => el !== valGenre
+      );
+      setGenres(updatedValues);
+    }
   };
 
   return (
@@ -38,28 +47,28 @@ const HeadMenu = ({
           >
             <div className="center green">
               <Checkbox
-                label={"Actions"}
-                nmb={28}
+                label="Actions"
+                genreId="28"
                 handlerGenre={handlerGenre}
               />
               <Checkbox
-                label={"Cartons"}
-                nmb={16}
+                label="Cartons"
+                genreId="16"
                 handlerGenre={handlerGenre}
               />
               <Checkbox
-                label={"Comedies"}
-                nmb={35}
+                label="Comedies"
+                genreId="35"
                 handlerGenre={handlerGenre}
               />
               <Checkbox
-                label={"Fantasies"}
-                nmb={14}
+                label="Fantasies"
+                genreId="14"
                 handlerGenre={handlerGenre}
               />
               <Checkbox
-                label={"Fantastics"}
-                nmb={878}
+                label="Fantastics"
+                genreId="878"
                 handlerGenre={handlerGenre}
               />
             </div>
@@ -67,7 +76,7 @@ const HeadMenu = ({
           <Button
             variant={"primary"}
             onClick={() =>
-              getGenresMovies(objGenres, setCardsData)
+              getGenresMovies(genres, setCardsData)
             }
           >
             {"Click to load"}

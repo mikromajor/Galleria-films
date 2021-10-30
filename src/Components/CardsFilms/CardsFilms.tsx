@@ -6,21 +6,38 @@ import {
   Col,
   Button,
 } from "react-bootstrap";
-import { arr } from "../../constants";
+import { arr, film, BASE_IMG_URL } from "../../constants";
 
 const CardsFilms = ({ cardsData }: { cardsData: arr }) => {
+  console.log(
+    "cardsData in  CardsFilms ->",
+    typeof cardsData,
+    cardsData
+  );
+
+  const test = "wdwedfg";
+
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="holder.js/500px500" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title
-          and make up the bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+    <div>
+      <i className="fas fa-spin fa-spinner"></i>
+      <i className="fas fa-cog"></i>
+      <i className="fas fa-spin fa-cog"></i>
+      {cardsData.map((cardData: film) => (
+        <Card id={cardData.id} style={{ width: "18rem" }}>
+          <Card.Img
+            variant="top"
+            src={`${BASE_IMG_URL}${cardData.poster_path}`}
+          />
+          <Card.Body>
+            <Card.Title>drhjbsdrf - {test}</Card.Title>
+            <Card.Text>
+              {` popularity: ${cardData.popularity}`}
+            </Card.Text>
+            <Button variant="primary">Go somewhere</Button>
+          </Card.Body>
+        </Card>
+      ))}
+    </div>
   );
 };
 export default CardsFilms;
