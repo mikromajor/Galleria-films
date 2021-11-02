@@ -8,7 +8,8 @@ const CardsFilms = ({
 }: {
   cardsData: arr | string;
 }) => {
-  const [list, setList] = useState<any[]>([]);
+  const [list, setList] = useState<film[] | []>([]);
+
   console.log("list------>", list);
 
   const expandCard = (id: string): void => {
@@ -16,16 +17,17 @@ const CardsFilms = ({
     d?.classList.toggle(cl.hidden);
   };
 
-  if (typeof cardsData == "string") {
+  if (typeof cardsData === "string") {
     return <h3>{cardsData}</h3>;
   }
-
-  const addToList = (id: string): void => {
+  const addToList = (id: number): void => {
     //checking the same film
-    if (list.every((el) => el.id != id)) {
+    if (!list) {
+      setList([...cardsData.filter((o) => o.id === id)]);
+    } else if (list.every((el) => el.id !== id)) {
       setList([
         ...list,
-        ...cardsData.filter((o) => o.id == id),
+        ...cardsData.filter((o) => o.id === id),
       ]);
     }
   };
@@ -72,7 +74,7 @@ const CardsFilms = ({
               variant='success'
               value={cardData.id}
               onClick={(e) => {
-                addToList(e.currentTarget.value);
+                addToList(Number(e.currentTarget.value));
               }}
             >
               Add to list

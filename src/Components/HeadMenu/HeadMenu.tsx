@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Button,
+  ToggleButton,
   Navbar,
   NavDropdown,
   Nav,
@@ -12,8 +13,12 @@ import "./HeadMenu.css";
 
 const HeadMenu = ({
   setCardsData,
+  setShowList,
+  showList,
 }: {
-  setCardsData: (result: any) => any;
+  setCardsData: any;
+  setShowList: any;
+  showList: any;
 }) => {
   const [genres, setGenres] = useState<string[]>([]);
   const handlerGenre = (
@@ -94,8 +99,20 @@ const HeadMenu = ({
           >
             {"Switch background color"}
           </Button>
-          <Button variant={"success"}>{"My list"}</Button>
-          <Button variant={"warning"}>{"Come back"}</Button>
+
+          <ToggleButton
+            id='toggle-check'
+            type='checkbox'
+            variant='success'
+            checked={showList}
+            value='1'
+            onChange={(e) =>
+              setShowList(e.currentTarget.checked)
+            }
+          >
+            My list
+          </ToggleButton>
+          <Button variant={"warning"}>Reserved button</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

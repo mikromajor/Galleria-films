@@ -26,9 +26,9 @@ export type valG = "28" | "16" | "35" | "14" | "878";
 
 export type film = {
   adult: boolean;
-  backdrop_path: null;
+  backdrop_path: null|string;
   genre_ids: number[];
-  id: string;
+  id: number;
   original_language: string;
   original_title: string;
   overview: string;
