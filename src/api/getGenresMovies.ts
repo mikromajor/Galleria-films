@@ -13,7 +13,7 @@ const getGenresMovies = (
       .then((arr_20_Obj) => setCardsData(arr_20_Obj))
       .catch((e) => console.log("ups!!!", e));
   } else {
-    console.log("No choozed genre");
+    setCardsData("Please choose genre");
   }
 };
 

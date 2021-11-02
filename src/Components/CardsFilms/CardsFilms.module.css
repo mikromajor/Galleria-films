@@ -1,0 +1,17 @@
+.card_marg {
+  margin: 20px;
+  padding-bottom: 65px;
+}
+.hidden {
+  display: none;
+}
+.card_btn_expand {
+  position: absolute;
+  left: 40px;
+  bottom: 15px;
+}
+.card_btn_addList {
+  position: absolute;
+  right: 40px;
+  bottom: 15px;
+}

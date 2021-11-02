@@ -16,7 +16,6 @@ const HeadMenu = ({
   setCardsData: (result: any) => any;
 }) => {
   const [genres, setGenres] = useState<string[]>([]);
-
   const handlerGenre = (
     valGenre: string,
     checked: boolean
@@ -35,40 +34,45 @@ const HeadMenu = ({
   };
 
   return (
-    <Navbar variant="dark" bg="dark" expand="lg">
-      <Navbar.Brand href="#home">FilmsTime</Navbar.Brand>
-      <Navbar.Toggle aria-controls="navbar-dark-example" />
-      <Navbar.Collapse id="navbar-dark-example">
+    <Navbar
+      variant='dark'
+      bg='dark'
+      expand='lg'
+      fixed='top'
+    >
+      <Navbar.Brand href='#home'>FilmsTime</Navbar.Brand>
+      <Navbar.Toggle aria-controls='navbar-dark-example' />
+      <Navbar.Collapse id='navbar-dark-example'>
         <Nav>
           <NavDropdown
-            id="nav-dropdown-dark-example"
-            title="Choose genre"
-            menuVariant="dark"
+            id='nav-dropdown-dark-example'
+            title='Choose genre'
+            menuVariant='dark'
           >
-            <div className="center green">
+            <div className='center green'>
               <Checkbox
-                label="Actions"
-                genreId="28"
+                label='Action'
+                genreId='28'
                 handlerGenre={handlerGenre}
               />
               <Checkbox
-                label="Cartons"
-                genreId="16"
+                label='Carton'
+                genreId='16'
                 handlerGenre={handlerGenre}
               />
               <Checkbox
-                label="Comedies"
-                genreId="35"
+                label='Comedy'
+                genreId='35'
                 handlerGenre={handlerGenre}
               />
               <Checkbox
-                label="Fantasies"
-                genreId="14"
+                label='Fantasy'
+                genreId='14'
                 handlerGenre={handlerGenre}
               />
               <Checkbox
-                label="Fantastics"
-                genreId="878"
+                label='Fantastic'
+                genreId='878'
                 handlerGenre={handlerGenre}
               />
             </div>
@@ -81,6 +85,17 @@ const HeadMenu = ({
           >
             {"Click to load"}
           </Button>
+
+          <Button
+            variant={"secondary"}
+            onClick={() =>
+              document.body.classList.toggle("bgBody")
+            }
+          >
+            {"Switch background color"}
+          </Button>
+          <Button variant={"success"}>{"My list"}</Button>
+          <Button variant={"warning"}>{"Come back"}</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

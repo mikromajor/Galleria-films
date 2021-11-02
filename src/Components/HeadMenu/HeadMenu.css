@@ -1,7 +1,10 @@
-.center{
-display: block;
-margin-left: 10%;
+.center {
+  display: block;
+  margin-left: 10%;
 }
-.green{
-    color:forestgreen;
+.green {
+  color: forestgreen;
+}
+.bgBody {
+  background-color: grey;
 }

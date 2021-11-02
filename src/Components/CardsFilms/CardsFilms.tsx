@@ -1,43 +1,90 @@
-import {
-  Card,
-  ListGroup,
-  ListGroupItem,
-  Row,
-  Col,
-  Button,
-} from "react-bootstrap";
+import { useState } from "react";
+import { Card, Row, Button } from "react-bootstrap";
 import { arr, film, BASE_IMG_URL } from "../../constants";
+import cl from "./CardsFilms.module.css";
 
-const CardsFilms = ({ cardsData }: { cardsData: arr }) => {
-  console.log(
-    "cardsData in  CardsFilms ->",
-    typeof cardsData,
-    cardsData
-  );
+const CardsFilms = ({
+  cardsData,
+}: {
+  cardsData: arr | string;
+}) => {
+  const [list, setList] = useState<any[]>([]);
+  console.log("list------>", list);
 
-  const test = "wdwedfg";
+  const expandCard = (id: string): void => {
+    let d = document.querySelector(`#cardText_${id}`);
+    d?.classList.toggle(cl.hidden);
+  };
+
+  if (typeof cardsData == "string") {
+    return <h3>{cardsData}</h3>;
+  }
+
+  const addToList = (id: string): void => {
+    //checking the same film
+    if (list.every((el) => el.id != id)) {
+      setList([
+        ...list,
+        ...cardsData.filter((o) => o.id == id),
+      ]);
+    }
+  };
 
   return (
-    <div>
-      <i className="fas fa-spin fa-spinner"></i>
-      <i className="fas fa-cog"></i>
-      <i className="fas fa-spin fa-cog"></i>
+    <Row style={{ justifyContent: "center" }}>
       {cardsData.map((cardData: film) => (
-        <Card id={cardData.id} style={{ width: "18rem" }}>
+        <Card
+          style={{ width: "20rem" }}
+          bg={`secondary ${cl.card_marg}`}
+          key={cardData.id}
+        >
           <Card.Img
-            variant="top"
+            variant='top'
             src={`${BASE_IMG_URL}${cardData.poster_path}`}
           />
           <Card.Body>
-            <Card.Title>drhjbsdrf - {test}</Card.Title>
-            <Card.Text>
-              {` popularity: ${cardData.popularity}`}
+            <Card.Title>{cardData.title}</Card.Title>
+            <Card.Subtitle className='mb-2'>
+              Vote average {cardData.vote_average}
+            </Card.Subtitle>
+            <Card.Subtitle>
+              Counts {cardData.vote_count}
+            </Card.Subtitle>
+            <Card.Text
+              className={cl.hidden}
+              id={`cardText_${cardData.id}`}
+            >
+              {cardData.overview}
             </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+
+            <Button
+              className={cl.card_btn_expand}
+              value={cardData.id}
+              variant='dark'
+              onClick={(e) => {
+                expandCard(e.currentTarget.value);
+              }}
+            >
+              Expand
+            </Button>
+            <Button
+              className={cl.card_btn_addList}
+              variant='success'
+              value={cardData.id}
+              onClick={(e) => {
+                addToList(e.currentTarget.value);
+              }}
+            >
+              Add to list
+            </Button>
           </Card.Body>
         </Card>
       ))}
-    </div>
+    </Row>
   );
 };
 export default CardsFilms;
+
+// <i className='fas fa-spin fa-spinner'></i>
+// <i className='fas fa-cog'></i>
+// <i className='fas fa-spin fa-cog'></i>
