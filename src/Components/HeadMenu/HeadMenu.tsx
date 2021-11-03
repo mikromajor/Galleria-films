@@ -103,7 +103,7 @@ const HeadMenu = ({
           <ToggleButton
             id='toggle-check'
             type='checkbox'
-            variant='success'
+            variant='outline-success'
             checked={showList}
             value='1'
             onChange={(e) =>
@@ -112,7 +112,9 @@ const HeadMenu = ({
           >
             My list
           </ToggleButton>
-          <Button variant={"warning"}>Reserved button</Button>
+          <Button variant={"warning"}>
+            Reserved button
+          </Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

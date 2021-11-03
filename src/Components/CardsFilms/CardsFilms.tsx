@@ -5,11 +5,13 @@ import cl from "./CardsFilms.module.css";
 
 const CardsFilms = ({
   cardsData,
+  list,
+  setList,
 }: {
   cardsData: arr | string;
+  list: arr | [];
+  setList: React.Dispatch<React.SetStateAction<arr | []>>;
 }) => {
-  const [list, setList] = useState<film[] | []>([]);
-
   console.log("list------>", list);
 
   const expandCard = (id: string): void => {

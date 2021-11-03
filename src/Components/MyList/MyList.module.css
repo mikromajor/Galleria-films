@@ -1,0 +1,14 @@
+.no_films {
+  display: flex;
+  flex-flow: column;
+  margin-top: 30%;
+  text-align: center;
+}
+.card_btn_delFilm {
+  position: absolute;
+  right: 40px;
+  bottom: 15px;
+}
+.card_marg {
+  padding-bottom: 45px;
+}
