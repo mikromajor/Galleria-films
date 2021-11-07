@@ -12,13 +12,13 @@ import { getGenresMovies } from "../../api";
 import "./HeadMenu.css";
 
 const HeadMenu = ({
-  setCardsData,
-  setShowList,
-  showList,
+  setFilmsData,
+  setShowFavoriteList,
+  showFavoriteList,
 }: {
-  setCardsData: any;
-  setShowList: any;
-  showList: any;
+  setFilmsData: any;
+  setShowFavoriteList: any;
+  showFavoriteList: any;
 }) => {
   const [genres, setGenres] = useState<string[]>([]);
   const handlerGenre = (
@@ -85,7 +85,7 @@ const HeadMenu = ({
           <Button
             variant={"primary"}
             onClick={() =>
-              getGenresMovies(genres, setCardsData)
+              getGenresMovies(genres, setFilmsData)
             }
           >
             {"Click to load"}
@@ -104,13 +104,13 @@ const HeadMenu = ({
             id='toggle-check'
             type='checkbox'
             variant='outline-success'
-            checked={showList}
+            checked={showFavoriteList}
             value='1'
             onChange={(e) =>
-              setShowList(e.currentTarget.checked)
+              setShowFavoriteList(e.currentTarget.checked)
             }
           >
-            My list
+            My favoriteList
           </ToggleButton>
           <Button variant={"warning"}>
             Reserved button

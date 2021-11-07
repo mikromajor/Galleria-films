@@ -1,36 +1,34 @@
 import { useState } from "react";
 import { HeadMenu } from "./HeadMenu";
-import CardsFilms from "./CardsFilms/CardsFilms";
-import MyList from "./MyList/MyList";
-import { arr } from "../constants";
+import Content from "./Content/Content";
+import { arr, sortInit } from "../constants";
 
 function App() {
-  const [cardsData, setCardsData] = useState(null);
-  const [list, setList] = useState<arr | []>([]);
-  const [showList, setShowList] = useState(false);
-  console.log("showList", showList);
+  const [filmsData, setFilmsData] = useState<arr | string>(
+    ""
+  );
+  const [favoriteList, setFavoriteList] = useState<
+    arr | []
+  >([]);
+  const [showFavoriteList, setShowFavoriteList] =
+    useState(false);
+  const [sort, setSort] = useState(sortInit);
 
   document.body.classList.add("bgBody");
   return (
     <>
       <HeadMenu
-        setCardsData={setCardsData}
-        setShowList={setShowList}
-        showList={showList}
+        setFilmsData={setFilmsData}
+        setShowFavoriteList={setShowFavoriteList}
+        showFavoriteList={showFavoriteList}
       />
-      {!showList && cardsData && (
-        <CardsFilms
-          cardsData={cardsData}
-          list={list}
-          setList={setList} //add
-        />
-      )}
-      {showList && (
-        <MyList
-          list={list}
-          setList={setList} //delete
-        />
-      )}
+
+      <Content
+        filmsData={filmsData}
+        favoriteList={favoriteList}
+        setFavoriteList={setFavoriteList}
+        showFavoriteList={showFavoriteList}
+      />
     </>
   );
 }

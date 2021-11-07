@@ -1,42 +1,48 @@
-import { useState } from "react";
+import React from "react";
 import { Card, Row, Button } from "react-bootstrap";
-import { arr, film, BASE_IMG_URL } from "../../constants";
-import cl from "./CardsFilms.module.css";
+import {
+  arr,
+  film,
+  BASE_IMG_URL,
+} from "../../../constants";
+import cl from "./FilmsList.module.css";
 
 const CardsFilms = ({
-  cardsData,
-  list,
-  setList,
+  filmsData,
+  favoriteList,
+  setFavoriteList,
 }: {
-  cardsData: arr | string;
-  list: arr | [];
-  setList: React.Dispatch<React.SetStateAction<arr | []>>;
+  filmsData: arr | string;
+  favoriteList: arr | [];
+  setFavoriteList: React.Dispatch<
+    React.SetStateAction<arr | []>
+  >;
 }) => {
-  console.log("list------>", list);
-
   const expandCard = (id: string): void => {
     let d = document.querySelector(`#cardText_${id}`);
     d?.classList.toggle(cl.hidden);
   };
 
-  if (typeof cardsData === "string") {
-    return <h3>{cardsData}</h3>;
+  if (typeof filmsData === "string") {
+    return <h3>{filmsData}</h3>;
   }
   const addToList = (id: number): void => {
     //checking the same film
-    if (!list) {
-      setList([...cardsData.filter((o) => o.id === id)]);
-    } else if (list.every((el) => el.id !== id)) {
-      setList([
-        ...list,
-        ...cardsData.filter((o) => o.id === id),
+    if (!favoriteList) {
+      setFavoriteList([
+        ...filmsData.filter((o) => o.id === id),
+      ]);
+    } else if (favoriteList.every((el) => el.id !== id)) {
+      setFavoriteList([
+        ...favoriteList,
+        ...filmsData.filter((o) => o.id === id),
       ]);
     }
   };
 
   return (
     <Row style={{ justifyContent: "center" }}>
-      {cardsData.map((cardData: film) => (
+      {filmsData.map((cardData: film) => (
         <Card
           style={{ width: "20rem" }}
           bg={`secondary ${cl.card_marg}`}
@@ -79,7 +85,7 @@ const CardsFilms = ({
                 addToList(Number(e.currentTarget.value));
               }}
             >
-              Add to list
+              Add to favoriteList
             </Button>
           </Card.Body>
         </Card>

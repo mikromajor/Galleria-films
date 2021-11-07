@@ -26,7 +26,7 @@ export type valG = "28" | "16" | "35" | "14" | "878";
 
 export type film = {
   adult: boolean;
-  backdrop_path: null|string;
+  backdrop_path: null | string;
   genre_ids: number[];
   id: number;
   original_language: string;
@@ -42,3 +42,19 @@ export type film = {
 };
 export type arr = film[];
 export type result = { results: arr };
+
+export const sortInit = {
+  alphabetical_original_title: false,
+  popularity: false,
+  release_date: false,
+  vote_average: false,
+  vote_count: false
+};
+export type sortInitType = {
+  alphabetical_original_title: boolean;
+  popularity: boolean;
+  release_date: boolean;
+  vote_average: boolean;
+  vote_count: boolean;
+};
+
