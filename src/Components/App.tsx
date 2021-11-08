@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HeadMenu } from "./HeadMenu";
 import Content from "./Content/Content";
-import { arr, sortInit } from "../constants";
+import { arr } from "../constants";
 
 function App() {
   const [filmsData, setFilmsData] = useState<arr | string>(
@@ -12,15 +12,19 @@ function App() {
   >([]);
   const [showFavoriteList, setShowFavoriteList] =
     useState(false);
-  const [sort, setSort] = useState(sortInit);
+  const [sort, setSort] = useState("");
 
   document.body.classList.add("bgBody");
+  console.log("sort--------->", sort);
+
   return (
     <>
       <HeadMenu
         setFilmsData={setFilmsData}
         setShowFavoriteList={setShowFavoriteList}
         showFavoriteList={showFavoriteList}
+        sort={sort}
+        setSort={setSort}
       />
 
       <Content

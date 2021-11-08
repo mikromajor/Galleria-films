@@ -5,10 +5,9 @@
   text-align: center;
 }
 .card_btn_delFilm {
-  position: absolute;
-  right: 40px;
-  bottom: 15px;
+  width: 100%;
 }
 .card_marg {
-  padding-bottom: 45px;
+  margin-top: 40px;
+  padding-bottom: 5px;
 }

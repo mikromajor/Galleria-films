@@ -1,6 +1,6 @@
-import "./Checkbox.css";
+import "./CheckGenre.css";
 
-const Checkbox = ({
+const CheckGenre = ({
   label,
   genreId,
   handlerGenre,
@@ -10,21 +10,21 @@ const Checkbox = ({
   handlerGenre: (a: string, b: boolean) => void;
 }) => {
   return (
-    <div className="rowsMarg">
+    <div className='rowsMarg'>
       <input
-        type="checkbox"
+        type='checkbox'
         id={label}
         name={label}
         value={genreId}
         onChange={(e) => {
-          const {value, checked} = e.currentTarget;
+          const { value, checked } = e.currentTarget;
           handlerGenre(value, checked);
         }}
       />
-      <label htmlFor={label} className="elMargin">
+      <label htmlFor={label} className='elMargin'>
         {label}
       </label>
     </div>
   );
 };
-export default Checkbox;
+export default CheckGenre;

@@ -43,18 +43,26 @@ export type film = {
 export type arr = film[];
 export type result = { results: arr };
 
-export const sortInit = {
+export const SORT_INIT = {
   alphabetical_original_title: false,
   popularity: false,
   release_date: false,
   vote_average: false,
-  vote_count: false
+  vote_count: false,
 };
-export type sortInitType = {
-  alphabetical_original_title: boolean;
+export type SORT_INIT_TYPE = {
+  alphabetical: boolean;
   popularity: boolean;
   release_date: boolean;
   vote_average: boolean;
   vote_count: boolean;
 };
+export type OPT = { val: string; name: string };
 
+export const OPTIONS = [
+  { val: "original_title", name: "Названию" },
+  { val: "popularity", name: "Популярности" },
+  { val: "release_date", name: "Дате релиза" },
+  { val: "vote_average", name: "Средней оценке" },
+  { val: "vote_count", name: "Количеству просмотров" },
+];

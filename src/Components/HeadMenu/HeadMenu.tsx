@@ -3,22 +3,26 @@ import {
   Button,
   ToggleButton,
   Navbar,
-  NavDropdown,
   Nav,
 } from "react-bootstrap";
-//import { initVal, valG } from "../../constants";
-import { Checkbox } from "./elements";
+import { DropdownSort } from "./elements";
+import { DropdownGenre } from "./elements";
 import { getGenresMovies } from "../../api";
+import { OPTIONS } from "../../constants";
 import "./HeadMenu.css";
 
 const HeadMenu = ({
   setFilmsData,
   setShowFavoriteList,
   showFavoriteList,
+  setSort,
+  sort,
 }: {
   setFilmsData: any;
   setShowFavoriteList: any;
   showFavoriteList: any;
+  setSort: React.Dispatch<React.SetStateAction<string>>;
+  sort: string;
 }) => {
   const [genres, setGenres] = useState<string[]>([]);
   const handlerGenre = (
@@ -37,6 +41,7 @@ const HeadMenu = ({
       setGenres(updatedValues);
     }
   };
+  const takeSort = (a: any) => console.log("takeSort", a);
 
   return (
     <Navbar
@@ -49,39 +54,14 @@ const HeadMenu = ({
       <Navbar.Toggle aria-controls='navbar-dark-example' />
       <Navbar.Collapse id='navbar-dark-example'>
         <Nav>
-          <NavDropdown
-            id='nav-dropdown-dark-example'
-            title='Choose genre'
-            menuVariant='dark'
-          >
-            <div className='center green'>
-              <Checkbox
-                label='Action'
-                genreId='28'
-                handlerGenre={handlerGenre}
-              />
-              <Checkbox
-                label='Carton'
-                genreId='16'
-                handlerGenre={handlerGenre}
-              />
-              <Checkbox
-                label='Comedy'
-                genreId='35'
-                handlerGenre={handlerGenre}
-              />
-              <Checkbox
-                label='Fantasy'
-                genreId='14'
-                handlerGenre={handlerGenre}
-              />
-              <Checkbox
-                label='Fantastic'
-                genreId='878'
-                handlerGenre={handlerGenre}
-              />
-            </div>
-          </NavDropdown>
+          <DropdownGenre handlerGenre={handlerGenre} />
+          <DropdownSort
+            options={OPTIONS}
+            defaultName={"Сортировать по"}
+            value={sort}
+            callback={setSort}
+          />
+
           <Button
             variant={"primary"}
             onClick={() =>
@@ -112,9 +92,6 @@ const HeadMenu = ({
           >
             My favoriteList
           </ToggleButton>
-          <Button variant={"warning"}>
-            Reserved button
-          </Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

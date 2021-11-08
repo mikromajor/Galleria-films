@@ -1,5 +1,5 @@
 import React from "react";
-import { arr, sortInitType } from "../../constants";
+import { arr } from "../../constants";
 import { FilmsList, FavoriteList } from "./components";
 
 const Content = ({
@@ -7,7 +7,6 @@ const Content = ({
   favoriteList,
   setFavoriteList,
   showFavoriteList,
-  sort,
 }: {
   filmsData: arr | string;
   favoriteList: arr | [];
@@ -15,7 +14,6 @@ const Content = ({
     React.SetStateAction<arr | []>
   >;
   showFavoriteList: boolean;
-  sort: sortInitType;
 }) => {
   return (
     <>
