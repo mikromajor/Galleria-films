@@ -1,5 +1,5 @@
 import { API_URL, API_KEY, PATH_3 } from "../constants";
-import { result } from "../constants";
+import { RESULT } from "../constants";
 
 async function getFetch(url: string) {
   console.log(url);
@@ -18,10 +18,10 @@ async function getFetch(url: string) {
       `Response status  fetch is: ${response.status}`
     );
   } else {
-    const result: result = await response.json();
-    console.log("in getFetch ->", result.results);
+    const RESULT: RESULT = await response.json();
+    console.log("in getFetch ->", RESULT.results);
 
-    return result.results;
+    return RESULT.results;
   }
 }
 export default getFetch;

@@ -1,38 +1,54 @@
-import { useState } from "react";
+import React from "react";
 import { Card, Row, Button } from "react-bootstrap";
-import { arr, film, BASE_IMG_URL } from "../../constants";
-import cl from "./CardsFilms.module.css";
+import {
+  ARR,
+  FILM,
+  BASE_IMG_URL,
+} from "../../../../constants";
+import cl from "./FilmsList.module.css";
 
 const CardsFilms = ({
-  cardsData,
+  filmsData,
+  favoriteList,
+  setFavoriteList,
 }: {
-  cardsData: arr | string;
+  filmsData: ARR | string;
+  favoriteList: ARR | [];
+  setFavoriteList: React.Dispatch<
+    React.SetStateAction<ARR | []>
+  >;
 }) => {
-  const [list, setList] = useState<any[]>([]);
-  console.log("list------>", list);
-
+  document.body.style.backgroundColor = "grey";
   const expandCard = (id: string): void => {
     let d = document.querySelector(`#cardText_${id}`);
     d?.classList.toggle(cl.hidden);
   };
 
-  if (typeof cardsData == "string") {
-    return <h3>{cardsData}</h3>;
+  if (typeof filmsData === "string") {
+    return <h3>{filmsData}</h3>;
   }
-
-  const addToList = (id: string): void => {
-    //checking the same film
-    if (list.every((el) => el.id != id)) {
-      setList([
-        ...list,
-        ...cardsData.filter((o) => o.id == id),
+  const addToList = (id: number): void => {
+    //checking the same FILM
+    if (!favoriteList) {
+      setFavoriteList([
+        ...filmsData.filter((o) => o.id === id),
+      ]);
+    } else if (favoriteList.every((el) => el.id !== id)) {
+      setFavoriteList([
+        ...favoriteList,
+        ...filmsData.filter((o) => o.id === id),
       ]);
     }
   };
 
   return (
-    <Row style={{ justifyContent: "center" }}>
-      {cardsData.map((cardData: film) => (
+    <Row
+      style={{
+        justifyContent: "center",
+        paddingTop: "50px",
+      }}
+    >
+      {filmsData.map((cardData: FILM) => (
         <Card
           style={{ width: "20rem" }}
           bg={`secondary ${cl.card_marg}`}
@@ -49,6 +65,9 @@ const CardsFilms = ({
             </Card.Subtitle>
             <Card.Subtitle>
               Counts {cardData.vote_count}
+            </Card.Subtitle>
+            <Card.Subtitle>
+              Release date {cardData.release_date}
             </Card.Subtitle>
             <Card.Text
               className={cl.hidden}
@@ -72,10 +91,10 @@ const CardsFilms = ({
               variant='success'
               value={cardData.id}
               onClick={(e) => {
-                addToList(e.currentTarget.value);
+                addToList(Number(e.currentTarget.value));
               }}
             >
-              Add to list
+              Add to favoriteList
             </Button>
           </Card.Body>
         </Card>
@@ -84,7 +103,3 @@ const CardsFilms = ({
   );
 };
 export default CardsFilms;
-
-// <i className='fas fa-spin fa-spinner'></i>
-// <i className='fas fa-cog'></i>
-// <i className='fas fa-spin fa-cog'></i>

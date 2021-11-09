@@ -1,36 +1,50 @@
 import { useState } from "react";
 import {
   Button,
+  ToggleButton,
   Navbar,
-  NavDropdown,
   Nav,
 } from "react-bootstrap";
-//import { initVal, valG } from "../../constants";
-import { Checkbox } from "./elements";
+import { DropdownSort } from "./elements";
+import { DropdownGenre } from "./elements";
 import { getGenresMovies } from "../../api";
+import { OPTIONS, ARR } from "../../constants";
+import { sorting, handlerGenre } from "./hooks";
 import "./HeadMenu.css";
 
 const HeadMenu = ({
-  setCardsData,
+  filmsData,
+  setFilmsData,
+  setShowFavoriteList,
+  showFavoriteList,
+  favoriteList,
+  setFavoriteList,
 }: {
-  setCardsData: (result: any) => any;
+  filmsData: string | ARR;
+  setFilmsData: React.Dispatch<
+    React.SetStateAction<string | ARR>
+  >;
+  favoriteList: string | ARR;
+  setFavoriteList: React.Dispatch<
+    React.SetStateAction<ARR | []>
+  >;
+  setShowFavoriteList: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
+  showFavoriteList: boolean;
 }) => {
+  const [sort, setSort] = useState<string>("");
   const [genres, setGenres] = useState<string[]>([]);
-  const handlerGenre = (
-    valGenre: string,
-    checked: boolean
-  ) => {
-    if (checked) {
-      if (!genres.some((item) => item === valGenre)) {
-        const updatedValues = [...genres, valGenre];
-        setGenres(updatedValues);
-      }
-    } else {
-      const updatedValues = genres.filter(
-        (el) => el !== valGenre
-      );
-      setGenres(updatedValues);
-    }
+
+  const callSorting = (val: string): void => {
+    setSort(val);
+    sorting(
+      val,
+      filmsData,
+      setFilmsData,
+      favoriteList,
+      setFavoriteList
+    );
   };
 
   return (
@@ -44,47 +58,33 @@ const HeadMenu = ({
       <Navbar.Toggle aria-controls='navbar-dark-example' />
       <Navbar.Collapse id='navbar-dark-example'>
         <Nav>
-          <NavDropdown
-            id='nav-dropdown-dark-example'
-            title='Choose genre'
-            menuVariant='dark'
-          >
-            <div className='center green'>
-              <Checkbox
-                label='Action'
-                genreId='28'
-                handlerGenre={handlerGenre}
-              />
-              <Checkbox
-                label='Carton'
-                genreId='16'
-                handlerGenre={handlerGenre}
-              />
-              <Checkbox
-                label='Comedy'
-                genreId='35'
-                handlerGenre={handlerGenre}
-              />
-              <Checkbox
-                label='Fantasy'
-                genreId='14'
-                handlerGenre={handlerGenre}
-              />
-              <Checkbox
-                label='Fantastic'
-                genreId='878'
-                handlerGenre={handlerGenre}
-              />
-            </div>
-          </NavDropdown>
+          <DropdownGenre
+            handlerGenre={(
+              valGenre: string,
+              checked: boolean
+            ) =>
+              handlerGenre(
+                genres,
+                setGenres,
+                valGenre,
+                checked
+              )
+            }
+          />
           <Button
             variant={"primary"}
             onClick={() =>
-              getGenresMovies(genres, setCardsData)
+              getGenresMovies(genres, setFilmsData)
             }
           >
-            {"Click to load"}
+            Click to load
           </Button>
+          <DropdownSort
+            options={OPTIONS}
+            defaultName={"Сортировать по..."}
+            value={sort}
+            callback={callSorting}
+          />
 
           <Button
             variant={"secondary"}
@@ -92,10 +92,21 @@ const HeadMenu = ({
               document.body.classList.toggle("bgBody")
             }
           >
-            {"Switch background color"}
+            Switch background color
           </Button>
-          <Button variant={"success"}>{"My list"}</Button>
-          <Button variant={"warning"}>{"Come back"}</Button>
+
+          <ToggleButton
+            id='toggle-check'
+            type='checkbox'
+            variant='outline-success'
+            checked={showFavoriteList}
+            value='1'
+            onChange={(e) =>
+              setShowFavoriteList(e.currentTarget.checked)
+            }
+          >
+            My favoriteList
+          </ToggleButton>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
