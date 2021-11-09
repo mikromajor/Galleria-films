@@ -1,9 +1,8 @@
 import getFetch from "./getFetch";
-import { result } from "../constants";
 
 const getGenresMovies = (
   genres: string[],
-  setFilmsData: (result: any) => any
+  setFilmsData: (RESULT: any) => any
 ) => {
   let url = "";
 

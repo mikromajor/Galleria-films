@@ -1,20 +1,21 @@
 import { Card, Row, Button } from "react-bootstrap";
 import {
-  arr,
-  film,
+  ARR,
+  FILM,
   BASE_IMG_URL,
-} from "../../../constants";
+} from "../../../../constants";
 import c from "./FavoriteList.module.css";
 
 const FavoriteList = ({
   favoriteList,
   setFavoriteList,
 }: {
-  favoriteList: arr | [];
+  favoriteList: ARR | [];
   setFavoriteList: React.Dispatch<
-    React.SetStateAction<arr | []>
+    React.SetStateAction<ARR | []>
   >;
 }) => {
+  document.body.style.backgroundColor = "#063";
   if (!favoriteList.length) {
     return (
       <div className={c.no_films}>
@@ -29,8 +30,14 @@ const FavoriteList = ({
     ]);
   };
   return (
-    <Row style={{ justifyContent: "center" }}>
-      {favoriteList.map((cardData: film) => (
+    <Row
+      style={{
+        justifyContent: "center",
+        paddingTop: "50px",
+        backgroundColor: "#063",
+      }}
+    >
+      {favoriteList.map((cardData: FILM) => (
         <Card
           style={{ width: "20rem" }}
           bg={`secondary ${c.card_marg}`}
@@ -48,6 +55,11 @@ const FavoriteList = ({
             <Card.Subtitle>
               Counts {cardData.vote_count}
             </Card.Subtitle>
+            <br />
+            <Card.Subtitle>
+              Release date {cardData.release_date}
+            </Card.Subtitle>
+            <br />
             <Card.Text id={`cardText_${cardData.id}`}>
               {cardData.overview}
             </Card.Text>

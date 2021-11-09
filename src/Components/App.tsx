@@ -1,30 +1,28 @@
 import { useState } from "react";
 import { HeadMenu } from "./HeadMenu";
 import Content from "./Content/Content";
-import { arr } from "../constants";
+import { ARR } from "../constants";
 
 function App() {
-  const [filmsData, setFilmsData] = useState<arr | string>(
+  const [filmsData, setFilmsData] = useState<ARR | string>(
     ""
   );
   const [favoriteList, setFavoriteList] = useState<
-    arr | []
+    ARR | []
   >([]);
   const [showFavoriteList, setShowFavoriteList] =
     useState(false);
-  const [sort, setSort] = useState("");
-
   document.body.classList.add("bgBody");
-  console.log("sort--------->", sort);
 
   return (
     <>
       <HeadMenu
+        filmsData={filmsData}
         setFilmsData={setFilmsData}
         setShowFavoriteList={setShowFavoriteList}
         showFavoriteList={showFavoriteList}
-        sort={sort}
-        setSort={setSort}
+        favoriteList={favoriteList}
+        setFavoriteList={setFavoriteList}
       />
 
       <Content
@@ -38,3 +36,4 @@ function App() {
 }
 
 export default App;
+//не коректно работает select in DropdownSort

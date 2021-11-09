@@ -4,64 +4,24 @@ export const BASE_IMG_URL =
 export const API_KEY = "29b19dec74f080a60c50986cda85b141";
 export const PATH_3 =
   "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1";
-export const initVal = {
-  28: false,
-  16: false,
-  35: false,
-  14: false,
-  878: false,
-};
-const initValue = [];
-initValue.push();
 
-export type objGenres = {
-  [key: string]: boolean;
-  // 28: boolean;
-  // 16: boolean;
-  // 35: boolean;
-  // 14: boolean;
-  // 878: boolean;
+export type FILM = {
+  [key: string]: string | number;
 };
-export type valG = "28" | "16" | "35" | "14" | "878";
-
-export type film = {
-  adult: boolean;
-  backdrop_path: null | string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-};
-export type arr = film[];
-export type result = { results: arr };
+export type ARR = FILM[];
+export type RESULT = { results: ARR };
 
 export const SORT_INIT = {
-  alphabetical_original_title: false,
-  popularity: false,
+  original_title: false,
   release_date: false,
   vote_average: false,
   vote_count: false,
 };
-export type SORT_INIT_TYPE = {
-  alphabetical: boolean;
-  popularity: boolean;
-  release_date: boolean;
-  vote_average: boolean;
-  vote_count: boolean;
+export type OPT = {
+  [key: string]: string;
 };
-export type OPT = { val: string; name: string };
-
-export const OPTIONS = [
+export const OPTIONS: OPT[] = [
   { val: "original_title", name: "Названию" },
-  { val: "popularity", name: "Популярности" },
   { val: "release_date", name: "Дате релиза" },
   { val: "vote_average", name: "Средней оценке" },
   { val: "vote_count", name: "Количеству просмотров" },

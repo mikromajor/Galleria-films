@@ -1,5 +1,5 @@
 import React from "react";
-import { arr } from "../../constants";
+import { ARR } from "../../constants";
 import { FilmsList, FavoriteList } from "./components";
 
 const Content = ({
@@ -8,10 +8,10 @@ const Content = ({
   setFavoriteList,
   showFavoriteList,
 }: {
-  filmsData: arr | string;
-  favoriteList: arr | [];
+  filmsData: ARR | string;
+  favoriteList: ARR | [];
   setFavoriteList: React.Dispatch<
-    React.SetStateAction<arr | []>
+    React.SetStateAction<ARR | []>
   >;
   showFavoriteList: boolean;
 }) => {

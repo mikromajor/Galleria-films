@@ -8,40 +8,44 @@ import {
 import { DropdownSort } from "./elements";
 import { DropdownGenre } from "./elements";
 import { getGenresMovies } from "../../api";
-import { OPTIONS } from "../../constants";
+import { OPTIONS, ARR } from "../../constants";
+import { sorting, handlerGenre } from "./hooks";
 import "./HeadMenu.css";
 
 const HeadMenu = ({
+  filmsData,
   setFilmsData,
   setShowFavoriteList,
   showFavoriteList,
-  setSort,
-  sort,
+  favoriteList,
+  setFavoriteList,
 }: {
-  setFilmsData: any;
-  setShowFavoriteList: any;
-  showFavoriteList: any;
-  setSort: React.Dispatch<React.SetStateAction<string>>;
-  sort: string;
+  filmsData: string | ARR;
+  setFilmsData: React.Dispatch<
+    React.SetStateAction<string | ARR>
+  >;
+  favoriteList: string | ARR;
+  setFavoriteList: React.Dispatch<
+    React.SetStateAction<ARR | []>
+  >;
+  setShowFavoriteList: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
+  showFavoriteList: boolean;
 }) => {
+  const [sort, setSort] = useState<string>("");
   const [genres, setGenres] = useState<string[]>([]);
-  const handlerGenre = (
-    valGenre: string,
-    checked: boolean
-  ) => {
-    if (checked) {
-      if (!genres.some((item) => item === valGenre)) {
-        const updatedValues = [...genres, valGenre];
-        setGenres(updatedValues);
-      }
-    } else {
-      const updatedValues = genres.filter(
-        (el) => el !== valGenre
-      );
-      setGenres(updatedValues);
-    }
+
+  const callSorting = (val: string): void => {
+    setSort(val);
+    sorting(
+      val,
+      filmsData,
+      setFilmsData,
+      favoriteList,
+      setFavoriteList
+    );
   };
-  const takeSort = (a: any) => console.log("takeSort", a);
 
   return (
     <Navbar
@@ -54,22 +58,33 @@ const HeadMenu = ({
       <Navbar.Toggle aria-controls='navbar-dark-example' />
       <Navbar.Collapse id='navbar-dark-example'>
         <Nav>
-          <DropdownGenre handlerGenre={handlerGenre} />
-          <DropdownSort
-            options={OPTIONS}
-            defaultName={"Сортировать по"}
-            value={sort}
-            callback={setSort}
+          <DropdownGenre
+            handlerGenre={(
+              valGenre: string,
+              checked: boolean
+            ) =>
+              handlerGenre(
+                genres,
+                setGenres,
+                valGenre,
+                checked
+              )
+            }
           />
-
           <Button
             variant={"primary"}
             onClick={() =>
               getGenresMovies(genres, setFilmsData)
             }
           >
-            {"Click to load"}
+            Click to load
           </Button>
+          <DropdownSort
+            options={OPTIONS}
+            defaultName={"Сортировать по..."}
+            value={sort}
+            callback={callSorting}
+          />
 
           <Button
             variant={"secondary"}
@@ -77,7 +92,7 @@ const HeadMenu = ({
               document.body.classList.toggle("bgBody")
             }
           >
-            {"Switch background color"}
+            Switch background color
           </Button>
 
           <ToggleButton

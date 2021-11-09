@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import {
-  arr,
-  film,
+  ARR,
+  FILM,
   BASE_IMG_URL,
-} from "../../../constants";
+} from "../../../../constants";
 import cl from "./FilmsList.module.css";
 
 const CardsFilms = ({
@@ -12,12 +12,13 @@ const CardsFilms = ({
   favoriteList,
   setFavoriteList,
 }: {
-  filmsData: arr | string;
-  favoriteList: arr | [];
+  filmsData: ARR | string;
+  favoriteList: ARR | [];
   setFavoriteList: React.Dispatch<
-    React.SetStateAction<arr | []>
+    React.SetStateAction<ARR | []>
   >;
 }) => {
+  document.body.style.backgroundColor = "grey";
   const expandCard = (id: string): void => {
     let d = document.querySelector(`#cardText_${id}`);
     d?.classList.toggle(cl.hidden);
@@ -27,7 +28,7 @@ const CardsFilms = ({
     return <h3>{filmsData}</h3>;
   }
   const addToList = (id: number): void => {
-    //checking the same film
+    //checking the same FILM
     if (!favoriteList) {
       setFavoriteList([
         ...filmsData.filter((o) => o.id === id),
@@ -41,8 +42,13 @@ const CardsFilms = ({
   };
 
   return (
-    <Row style={{ justifyContent: "center" }}>
-      {filmsData.map((cardData: film) => (
+    <Row
+      style={{
+        justifyContent: "center",
+        paddingTop: "50px",
+      }}
+    >
+      {filmsData.map((cardData: FILM) => (
         <Card
           style={{ width: "20rem" }}
           bg={`secondary ${cl.card_marg}`}
@@ -59,6 +65,9 @@ const CardsFilms = ({
             </Card.Subtitle>
             <Card.Subtitle>
               Counts {cardData.vote_count}
+            </Card.Subtitle>
+            <Card.Subtitle>
+              Release date {cardData.release_date}
             </Card.Subtitle>
             <Card.Text
               className={cl.hidden}
@@ -94,7 +103,3 @@ const CardsFilms = ({
   );
 };
 export default CardsFilms;
-
-// <i className='fas fa-spin fa-spinner'></i>
-// <i className='fas fa-cog'></i>
-// <i className='fas fa-spin fa-cog'></i>

@@ -1,2 +1,2 @@
-export{default as FavoriteList} from './FavoriteList';
-export{default as FilmsList} from './FilmsList';
+export { default as FavoriteList } from "./FavoriteList/FavoriteList";
+export { default as FilmsList } from "./FilmsList/FilmsList";

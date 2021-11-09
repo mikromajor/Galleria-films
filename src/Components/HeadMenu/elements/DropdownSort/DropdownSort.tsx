@@ -9,15 +9,18 @@ const DropdownSort = ({
   options: OPT[];
   defaultName: string;
   value: string;
-  callback: React.Dispatch<React.SetStateAction<string>>;
+  callback: (a: string) => void;
 }) => {
-  console.log(options);
   return (
     <select
-      value={value}
-      onChange={(e) => callback(e.currentTarget.value)}
+      name={defaultName}
+      id={"selectDropdownSort"}
+      onChange={(e) => {
+        return callback(e.currentTarget.value);
+      }}
     >
-      <option value={"0"}>{defaultName}</option>
+      {/* беда с disabled - не раб */}
+      <option>{defaultName}</option>
       {options.map((obj) => {
         return (
           <option key={obj.val} value={obj.val}>
