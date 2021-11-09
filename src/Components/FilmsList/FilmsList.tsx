@@ -1,10 +1,6 @@
 import React from "react";
 import { Card, Row, Button } from "react-bootstrap";
-import {
-  ARR,
-  FILM,
-  BASE_IMG_URL,
-} from "../../../../constants";
+import { ARR, FILM, BASE_IMG_URL } from "../../constants";
 import cl from "./FilmsList.module.css";
 
 const CardsFilms = ({
@@ -43,6 +39,7 @@ const CardsFilms = ({
 
   return (
     <Row
+      id='home'
       style={{
         justifyContent: "center",
         paddingTop: "50px",

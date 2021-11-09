@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { HeadMenu } from "./HeadMenu";
-import Content from "./Content/Content";
+import FavoriteList from "./FavoriteList/FavoriteList";
+import FilmsList from "./FilmsList/FilmsList";
 import { ARR } from "../constants";
 
 function App() {
@@ -12,7 +13,6 @@ function App() {
   >([]);
   const [showFavoriteList, setShowFavoriteList] =
     useState(false);
-  document.body.classList.add("bgBody");
 
   return (
     <>
@@ -25,12 +25,18 @@ function App() {
         setFavoriteList={setFavoriteList}
       />
 
-      <Content
-        filmsData={filmsData}
-        favoriteList={favoriteList}
-        setFavoriteList={setFavoriteList}
-        showFavoriteList={showFavoriteList}
-      />
+      {showFavoriteList ? (
+        <FavoriteList
+          favoriteList={favoriteList}
+          setFavoriteList={setFavoriteList}
+        />
+      ) : (
+        <FilmsList
+          filmsData={filmsData}
+          favoriteList={favoriteList}
+          setFavoriteList={setFavoriteList}
+        />
+      )}
     </>
   );
 }

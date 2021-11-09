@@ -1,4 +1,4 @@
-import "./CheckGenre.css";
+import cl from "./CheckGenre.module.css";
 
 const CheckGenre = ({
   label,
@@ -10,8 +10,9 @@ const CheckGenre = ({
   handlerGenre: (a: string, b: boolean) => void;
 }) => {
   return (
-    <div className='rowsMarg'>
+    <form className={cl.form}>
       <input
+        className={cl.checkbox}
         type='checkbox'
         id={label}
         name={label}
@@ -21,10 +22,10 @@ const CheckGenre = ({
           handlerGenre(value, checked);
         }}
       />
-      <label htmlFor={label} className='elMargin'>
+      <label htmlFor={label} className={cl.label}>
         {label}
       </label>
-    </div>
+    </form>
   );
 };
 export default CheckGenre;

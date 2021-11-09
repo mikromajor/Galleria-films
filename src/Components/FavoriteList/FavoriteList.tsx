@@ -1,9 +1,5 @@
 import { Card, Row, Button } from "react-bootstrap";
-import {
-  ARR,
-  FILM,
-  BASE_IMG_URL,
-} from "../../../../constants";
+import { ARR, FILM, BASE_IMG_URL } from "../../constants";
 import c from "./FavoriteList.module.css";
 
 const FavoriteList = ({
@@ -31,6 +27,7 @@ const FavoriteList = ({
   };
   return (
     <Row
+      id='home'
       style={{
         justifyContent: "center",
         paddingTop: "50px",

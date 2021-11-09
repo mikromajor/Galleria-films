@@ -1,0 +1,10 @@
+.form {
+  margin-top: 10px;
+}
+.checkbox {
+  cursor: pointer;
+}
+.label {
+  cursor: pointer;
+  margin-left: 5px;
+}

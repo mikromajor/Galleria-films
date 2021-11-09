@@ -5,11 +5,14 @@ import {
   Navbar,
   Nav,
 } from "react-bootstrap";
-import { DropdownSort } from "./elements";
-import { DropdownGenre } from "./elements";
+import {
+  DropdownGenre,
+  DropdownSort,
+  Counter,
+} from "../UI/elements";
 import { getGenresMovies } from "../../api";
 import { OPTIONS, ARR } from "../../constants";
-import { sorting, handlerGenre } from "./hooks";
+import { sorting, handlerGenre } from "./handlers";
 import "./HeadMenu.css";
 
 const HeadMenu = ({
@@ -85,16 +88,6 @@ const HeadMenu = ({
             value={sort}
             callback={callSorting}
           />
-
-          <Button
-            variant={"secondary"}
-            onClick={() =>
-              document.body.classList.toggle("bgBody")
-            }
-          >
-            Switch background color
-          </Button>
-
           <ToggleButton
             id='toggle-check'
             type='checkbox'
@@ -107,6 +100,7 @@ const HeadMenu = ({
           >
             My favoriteList
           </ToggleButton>
+          <Counter favoriteList={favoriteList} />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
