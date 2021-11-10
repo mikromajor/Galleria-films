@@ -5,9 +5,7 @@ import FilmsList from "./FilmsList/FilmsList";
 import { ARR } from "../constants";
 
 function App() {
-  const [filmsData, setFilmsData] = useState<ARR | string>(
-    ""
-  );
+  const [filmsData, setFilmsData] = useState<ARR | []>([]);
   const [favoriteList, setFavoriteList] = useState<
     ARR | []
   >([]);

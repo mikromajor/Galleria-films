@@ -8,7 +8,7 @@ const CardsFilms = ({
   favoriteList,
   setFavoriteList,
 }: {
-  filmsData: ARR | string;
+  filmsData: ARR | [];
   favoriteList: ARR | [];
   setFavoriteList: React.Dispatch<
     React.SetStateAction<ARR | []>
@@ -20,15 +20,14 @@ const CardsFilms = ({
     d?.classList.toggle(cl.hidden);
   };
 
-  if (typeof filmsData === "string") {
-    return <h3>{filmsData}</h3>;
+  if (!filmsData.length) {
+    return <h3>Please, choose genres</h3>;
   }
+
   const addToList = (id: number): void => {
     //checking the same FILM
     if (!favoriteList) {
-      setFavoriteList([
-        ...filmsData.filter((o) => o.id === id),
-      ]);
+      setFavoriteList(filmsData.filter((o) => o.id === id));
     } else if (favoriteList.every((el) => el.id !== id)) {
       setFavoriteList([
         ...favoriteList,

@@ -9,7 +9,6 @@ export type FILM = {
   [key: string]: string | number;
 };
 export type ARR = FILM[];
-export type RESULT = { results: ARR };
 
 export const SORT_INIT = {
   original_title: false,

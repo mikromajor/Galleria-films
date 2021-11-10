@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
 import { ARR } from "../../../../constants";
 import cl from "./Counter.module.css";
 
 const Counter = ({
   favoriteList,
 }: {
-  favoriteList: string | ARR;
+  favoriteList: [] | ARR;
 }) => {
-  let amount;
-  typeof favoriteList === "string"
-    ? (amount = 0)
-    : (amount = favoriteList.length);
-  return <div className={cl.counter}>{amount}</div>;
+  return (
+    <div className={cl.counter}>{favoriteList.length}</div>
+  );
 };
 export default Counter;

@@ -2,17 +2,16 @@ import { ARR } from "../../../constants";
 
 const sorting = (
   val: string,
-  filmsData: string | ARR,
+  filmsData: [] | ARR,
   setFilmsData: React.Dispatch<
-    React.SetStateAction<string | ARR>
+    React.SetStateAction<[] | ARR>
   >,
-  favoriteList: string | ARR,
+  favoriteList: [] | ARR,
   setFavoriteList: React.Dispatch<
     React.SetStateAction<ARR | []>
   >
 ) => {
   if (
-    typeof filmsData !== "string" &&
     filmsData.length &&
     filmsData.every(
       (obj) =>

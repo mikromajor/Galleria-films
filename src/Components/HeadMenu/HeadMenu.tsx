@@ -23,11 +23,11 @@ const HeadMenu = ({
   favoriteList,
   setFavoriteList,
 }: {
-  filmsData: string | ARR;
+  filmsData: [] | ARR;
   setFilmsData: React.Dispatch<
-    React.SetStateAction<string | ARR>
+    React.SetStateAction<[] | ARR>
   >;
-  favoriteList: string | ARR;
+  favoriteList: [] | ARR;
   setFavoriteList: React.Dispatch<
     React.SetStateAction<ARR | []>
   >;
