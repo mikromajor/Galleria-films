@@ -11,7 +11,6 @@ const FavoriteList = ({
     React.SetStateAction<ARR | []>
   >;
 }) => {
-  document.body.style.backgroundColor = "#063";
   if (!favoriteList.length) {
     return (
       <div className={c.no_films}>
@@ -29,15 +28,16 @@ const FavoriteList = ({
     <Row
       id='home'
       style={{
+        marginTop: "20px",
         justifyContent: "center",
         paddingTop: "50px",
-        backgroundColor: "#063",
+        backgroundColor: "#ccc",
       }}
     >
       {favoriteList.map((cardData: FILM) => (
         <Card
           style={{ width: "20rem" }}
-          bg={`secondary ${c.card_marg}`}
+          bg={`success ${c.card_marg}`}
           key={`MyList${cardData.id}`}
         >
           <Card.Img

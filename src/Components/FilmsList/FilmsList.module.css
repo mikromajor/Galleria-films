@@ -1,6 +1,6 @@
 .card_marg {
   margin: 20px;
-  padding-bottom: 65px;
+  padding-bottom: 45px;
 }
 .hidden {
   display: none;
@@ -14,4 +14,8 @@
   position: absolute;
   right: 40px;
   bottom: 15px;
+}
+.center {
+  text-align: center;
+  margin-top: 200px;
 }

@@ -1,4 +1,4 @@
-import { OPT } from "../../../../constants";
+import { OPT } from "../../../constants";
 
 const DropdownSort = ({
   options,

@@ -1,3 +1,7 @@
+.card_marg {
+  margin: 20px;
+  padding-bottom: 45px;
+}
 .no_films {
   display: flex;
   flex-flow: column;
@@ -9,8 +13,4 @@
   position: absolute;
   left: 60px;
   bottom: 10px;
-}
-.card_marg {
-  margin-top: 40px;
-  padding-bottom: 45px;
 }

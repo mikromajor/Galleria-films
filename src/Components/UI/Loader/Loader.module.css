@@ -1,0 +1,24 @@
+.loadText {
+  display: block;
+  margin-top: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 6em;
+}
+.loading {
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 5px dashed blue;
+  animation: rotate 2s infinite linear;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1.5);
+  }
+}

@@ -3,14 +3,18 @@ import { HeadMenu } from "./HeadMenu";
 import FavoriteList from "./FavoriteList/FavoriteList";
 import FilmsList from "./FilmsList/FilmsList";
 import { ARR } from "../constants";
+import { Loader } from "./UI";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
   const [filmsData, setFilmsData] = useState<ARR | []>([]);
   const [favoriteList, setFavoriteList] = useState<
     ARR | []
   >([]);
   const [showFavoriteList, setShowFavoriteList] =
     useState(false);
+
+  console.log("isLoading in APP---->", isLoading);
 
   return (
     <>
@@ -21,9 +25,11 @@ function App() {
         showFavoriteList={showFavoriteList}
         favoriteList={favoriteList}
         setFavoriteList={setFavoriteList}
+        setIsLoading={setIsLoading}
       />
-
-      {showFavoriteList ? (
+      {isLoading ? (
+        <Loader />
+      ) : showFavoriteList ? (
         <FavoriteList
           favoriteList={favoriteList}
           setFavoriteList={setFavoriteList}

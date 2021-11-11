@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import { ARR, FILM, BASE_IMG_URL } from "../../constants";
 import cl from "./FilmsList.module.css";
@@ -14,14 +14,17 @@ const CardsFilms = ({
     React.SetStateAction<ARR | []>
   >;
 }) => {
-  document.body.style.backgroundColor = "grey";
+  const [chosen, setChosen] = useState(null); // need add btn X -remove
+
   const expandCard = (id: string): void => {
     let d = document.querySelector(`#cardText_${id}`);
     d?.classList.toggle(cl.hidden);
   };
 
   if (!filmsData.length) {
-    return <h3>Please, choose genres</h3>;
+    return (
+      <h3 className={cl.center}>Please, choose genres</h3>
+    );
   }
 
   const addToList = (id: number): void => {
@@ -41,13 +44,15 @@ const CardsFilms = ({
       id='home'
       style={{
         justifyContent: "center",
+        marginTop: "20px",
         paddingTop: "50px",
+        backgroundColor: "#ccc",
       }}
     >
       {filmsData.map((cardData: FILM) => (
         <Card
           style={{ width: "20rem" }}
-          bg={`secondary ${cl.card_marg}`}
+          bg={`primary ${cl.card_marg}`}
           key={cardData.id}
         >
           <Card.Img
@@ -58,12 +63,11 @@ const CardsFilms = ({
             <Card.Title>{cardData.title}</Card.Title>
             <Card.Subtitle className='mb-2'>
               Vote average {cardData.vote_average}
-            </Card.Subtitle>
-            <Card.Subtitle>
+              <br />
               Counts {cardData.vote_count}
-            </Card.Subtitle>
-            <Card.Subtitle>
+              <br />
               Release date {cardData.release_date}
+              <br />
             </Card.Subtitle>
             <Card.Text
               className={cl.hidden}

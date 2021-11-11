@@ -1,4 +1,4 @@
-import { ARR } from "../../../../constants";
+import { ARR } from "../../../constants";
 import cl from "./Counter.module.css";
 
 const Counter = ({
