@@ -86,7 +86,7 @@ const HeadMenu = ({
           </Button>
           <DropdownSort
             options={OPTIONS}
-            defaultName={"Сортировать по..."}
+            defaultName={"Sort"}
             value={sort}
             callback={callSorting}
           />

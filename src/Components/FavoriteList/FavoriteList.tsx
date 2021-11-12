@@ -19,10 +19,10 @@ const FavoriteList = ({
       </div>
     );
   }
-  const deleteFromList = (id: number) => {
-    setFavoriteList([
-      ...favoriteList.filter((f) => f.id !== id),
-    ]);
+  const deleteFromList = (id: string) => {
+    setFavoriteList(
+      favoriteList.filter((f) => `${f.id}` !== id)
+    );
   };
   return (
     <Row
@@ -65,9 +65,7 @@ const FavoriteList = ({
               variant='danger'
               value={cardData.id}
               onClick={(e) => {
-                deleteFromList(
-                  Number(e.currentTarget.value)
-                );
+                deleteFromList(e.currentTarget.value);
               }}
             >
               Delete from favoriteList

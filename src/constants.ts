@@ -20,8 +20,8 @@ export type OPT = {
   [key: string]: string;
 };
 export const OPTIONS: OPT[] = [
-  { val: "original_title", name: "Названию" },
-  { val: "release_date", name: "Дате релиза" },
-  { val: "vote_average", name: "Средней оценке" },
-  { val: "vote_count", name: "Количеству просмотров" },
+  { val: "original_title", name: "Original title" },
+  { val: "release_date", name: "Release date" },
+  { val: "vote_average", name: "Vote average" },
+  { val: "vote_count", name: "Vote count" },
 ];

@@ -14,8 +14,6 @@ function App() {
   const [showFavoriteList, setShowFavoriteList] =
     useState(false);
 
-  console.log("isLoading in APP---->", isLoading);
-
   return (
     <>
       <HeadMenu

@@ -1,6 +1,15 @@
-import React, { useState } from "react";
-import { Card, Row, Button } from "react-bootstrap";
+import { useEffect } from "react";
+import {
+  Card,
+  Row,
+  Button,
+  CloseButton,
+} from "react-bootstrap";
 import { ARR, FILM, BASE_IMG_URL } from "../../constants";
+import {
+  deleteFromFavoriteList,
+  addToFavoriteList,
+} from "./handlers";
 import cl from "./FilmsList.module.css";
 
 const CardsFilms = ({
@@ -14,32 +23,29 @@ const CardsFilms = ({
     React.SetStateAction<ARR | []>
   >;
 }) => {
-  const [chosen, setChosen] = useState(null); // need add btn X -remove
+  useEffect(() => {
+    favoriteList.forEach((o) => {
+      const card = document.getElementById(`card_${o.id}`);
+      if (card) {
+        card.classList.remove("bg-primary");
+        card.style.backgroundColor = "rgb(25,125,84)";
+        const remove = document.getElementById(
+          `card_btn_remove_${o.id}`
+        );
+        remove?.classList.remove(cl.hidden);
+        remove?.classList.add(cl.card_btn_remove);
+      }
+    });
+  }, [favoriteList, setFavoriteList]);
 
   const expandCard = (id: string): void => {
     let d = document.querySelector(`#cardText_${id}`);
     d?.classList.toggle(cl.hidden);
   };
 
-  if (!filmsData.length) {
-    return (
-      <h3 className={cl.center}>Please, choose genres</h3>
-    );
-  }
-
-  const addToList = (id: number): void => {
-    //checking the same FILM
-    if (!favoriteList) {
-      setFavoriteList(filmsData.filter((o) => o.id === id));
-    } else if (favoriteList.every((el) => el.id !== id)) {
-      setFavoriteList([
-        ...favoriteList,
-        ...filmsData.filter((o) => o.id === id),
-      ]);
-    }
-  };
-
-  return (
+  return !filmsData.length ? (
+    <h3 className={cl.center}>Please, choose genres</h3>
+  ) : (
     <Row
       id='home'
       style={{
@@ -54,6 +60,7 @@ const CardsFilms = ({
           style={{ width: "20rem" }}
           bg={`primary ${cl.card_marg}`}
           key={cardData.id}
+          id={"card_" + cardData.id}
         >
           <Card.Img
             variant='top'
@@ -86,16 +93,35 @@ const CardsFilms = ({
             >
               Expand
             </Button>
+
             <Button
               className={cl.card_btn_addList}
               variant='success'
               value={cardData.id}
               onClick={(e) => {
-                addToList(Number(e.currentTarget.value));
+                addToFavoriteList(
+                  e.currentTarget.value,
+                  filmsData,
+                  favoriteList,
+                  setFavoriteList
+                );
               }}
             >
               Add to favoriteList
             </Button>
+            <CloseButton
+              variant='white'
+              id={`card_btn_remove_${cardData.id}`}
+              className={cl.hidden}
+              value={cardData.id}
+              onClick={(e) =>
+                deleteFromFavoriteList(
+                  e.currentTarget.value,
+                  favoriteList,
+                  setFavoriteList
+                )
+              }
+            />
           </Card.Body>
         </Card>
       ))}
