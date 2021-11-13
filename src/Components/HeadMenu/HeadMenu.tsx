@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
   ToggleButton,
@@ -40,14 +40,16 @@ const HeadMenu = ({
     React.SetStateAction<boolean>
   >;
 }) => {
-  const [sort, setSort] = useState<string>("");
+  const [keyWordSort, setKeyWordSort] =
+    useState<string>("");
   const [genres, setGenres] = useState<string[]>([]);
 
-  const callSorting = (val: string): void => {
-    setSort(val);
-    sorting(val, filmsData, setFilmsData);
-    sorting(val, favoriteList, setFavoriteList);
-  };
+  useEffect(() => {
+    if (keyWordSort || filmsData)
+      sorting(keyWordSort, filmsData, setFilmsData);
+    if (keyWordSort || favoriteList)
+      sorting(keyWordSort, favoriteList, setFavoriteList);
+  }, [keyWordSort]);
 
   return (
     <Navbar
@@ -79,7 +81,7 @@ const HeadMenu = ({
           <Button
             variant={"primary"}
             onClick={() =>
-              getMovies(genres, setFilmsData, setIsLoading)
+              getMovies(genres, setFilmsData, setIsLoading, sorting, keyWordSort)
             }
           >
             Click to load
@@ -87,8 +89,8 @@ const HeadMenu = ({
           <DropdownSort
             options={OPTIONS}
             defaultName={"Sort"}
-            value={sort}
-            callback={callSorting}
+            value={keyWordSort}
+            setKeyWordSort={setKeyWordSort}
           />
           <ToggleButton
             id='toggle-check'

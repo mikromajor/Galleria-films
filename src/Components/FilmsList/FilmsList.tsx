@@ -110,6 +110,7 @@ const CardsFilms = ({
               Add to favoriteList
             </Button>
             <CloseButton
+              style={{ border: "3px solid red" }}
               variant='white'
               id={`card_btn_remove_${cardData.id}`}
               className={cl.hidden}

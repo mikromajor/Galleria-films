@@ -13,7 +13,15 @@ const getMovies = (
   >,
   setIsLoading: React.Dispatch<
     React.SetStateAction<boolean>
-  >
+  >,
+  sorting: (
+    keyWord: string,
+    filmsList: [] | ARR,
+    setFilmsList: React.Dispatch<
+      React.SetStateAction<[] | ARR>
+    >
+  ) => void,
+  keyWordSort: string
 ) => {
   let url = "";
 
@@ -21,12 +29,14 @@ const getMovies = (
     url = `${API_URL}/discover/movie?api_key=${API_KEY}${PATH_3}&with_genres=${genres.join()}`;
 
     setIsLoading(true);
-    console.log("must be true");
-
     const results = getFetch(url)
       .then((obj) => {
         setIsLoading(false);
-        setFilmsData(obj.results);
+        if (keyWordSort) {
+          sorting(keyWordSort, obj.results, setFilmsData);
+        } else {
+          setFilmsData(obj.results);
+        }
       })
       .catch((e) => console.log("ups!!!", e));
   } else {

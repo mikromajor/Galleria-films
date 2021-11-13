@@ -4,23 +4,24 @@ const DropdownSort = ({
   options,
   defaultName,
   value,
-  callback,
+  setKeyWordSort,
 }: {
   options: OPT[];
   defaultName: string;
   value: string;
-  callback: (a: string) => void;
+  setKeyWordSort: React.Dispatch<
+    React.SetStateAction<string>
+  >;
 }) => {
   return (
     <select
       name={defaultName}
       id={"selectDropdownSort"}
       onChange={(e) => {
-        return callback(e.currentTarget.value);
+        return setKeyWordSort(e.currentTarget.value);
       }}
     >
-      {/* беда с disabled - не раб */}
-      <option>{defaultName}</option>
+      <option value='0'>{defaultName}</option>
       {options.map((obj) => {
         return (
           <option key={obj.val} value={obj.val}>

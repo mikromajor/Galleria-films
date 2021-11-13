@@ -1,8 +1,13 @@
-import cl from './FilmsList.module.css';
-import { ARR, FILM, BASE_IMG_URL } from "../../constants";
+import cl from "./FilmsList.module.css";
+import { ARR } from "../../constants";
 
-
-export  const deleteFromFavoriteList = (id: string, favoriteList: ARR | [] , setFavoriteList: React.Dispatch<React.SetStateAction<ARR | []>>): void => {
+export const deleteFromFavoriteList = (
+  id: string,
+  favoriteList: ARR | [],
+  setFavoriteList: React.Dispatch<
+    React.SetStateAction<ARR | []>
+  >
+): void => {
   if (favoriteList) {
     setFavoriteList(
       favoriteList.filter((o) => `${o.id}` !== id)
@@ -19,11 +24,19 @@ export  const deleteFromFavoriteList = (id: string, favoriteList: ARR | [] , set
   }
 };
 
- 
-export  const addToFavoriteList = (id: string,filmsData:  ARR | [], favoriteList:  ARR | [], setFavoriteList: React.Dispatch<React.SetStateAction<ARR | []>>): void => {
+export const addToFavoriteList = (
+  id: string,
+  filmsData: ARR | [],
+  favoriteList: ARR | [],
+  setFavoriteList: React.Dispatch<
+    React.SetStateAction<ARR | []>
+  >
+): void => {
   //checking the same FILM
   if (!favoriteList) {
-    setFavoriteList(filmsData.filter((o) => `${o.id}` === id));
+    setFavoriteList(
+      filmsData.filter((o) => `${o.id}` === id)
+    );
   } else if (favoriteList.every((o) => `${o.id}` !== id)) {
     setFavoriteList([
       ...favoriteList,
