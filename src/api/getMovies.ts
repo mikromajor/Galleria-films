@@ -32,11 +32,9 @@ const getMovies = (
     const results = getFetch(url)
       .then((obj) => {
         setIsLoading(false);
-        if (keyWordSort) {
-          sorting(keyWordSort, obj.results, setFilmsData);
-        } else {
-          setFilmsData(obj.results);
-        }
+        console.log("in getMovies--->", obj.results);
+
+        sorting(keyWordSort, obj.results, setFilmsData);
       })
       .catch((e) => console.log("ups!!!", e));
   } else {

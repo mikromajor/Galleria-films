@@ -8,24 +8,30 @@ const sorting = (
   >
 ) => {
   if (
+    keyWordSort &&
     filmsList.length &&
     filmsList.every(
       (obj) =>
-        typeof obj[keyWordSort] === "string" ||
-        typeof obj[keyWordSort] === "number"
+        typeof obj[keyWordSort] === "string" || "number"
     )
   ) {
     setFilmsList(
       [...filmsList].sort((a, b): number => {
-        if (typeof a[keyWordSort] === "string") {
+        if (keyWordSort === "original_title") {
           return a[keyWordSort] > b[keyWordSort] ? 1 : -1;
-        } else if (typeof a[keyWordSort] === "number") {
+        } else if (
+          keyWordSort === "release_date" ||
+          "vote_average" ||
+          "vote_count"
+        ) {
           return a[keyWordSort] < b[keyWordSort] ? 1 : -1;
         } else {
           return 0;
         }
       })
     );
+  } else {
+    setFilmsList([...filmsList]);
   }
 };
 

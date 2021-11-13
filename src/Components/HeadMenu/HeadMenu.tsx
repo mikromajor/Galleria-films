@@ -45,10 +45,8 @@ const HeadMenu = ({
   const [genres, setGenres] = useState<string[]>([]);
 
   useEffect(() => {
-    if (keyWordSort || filmsData)
-      sorting(keyWordSort, filmsData, setFilmsData);
-    if (keyWordSort || favoriteList)
-      sorting(keyWordSort, favoriteList, setFavoriteList);
+    sorting(keyWordSort, filmsData, setFilmsData);
+    sorting(keyWordSort, favoriteList, setFavoriteList);
   }, [keyWordSort]);
 
   return (
@@ -81,7 +79,13 @@ const HeadMenu = ({
           <Button
             variant={"primary"}
             onClick={() =>
-              getMovies(genres, setFilmsData, setIsLoading, sorting, keyWordSort)
+              getMovies(
+                genres,
+                setFilmsData,
+                setIsLoading,
+                sorting,
+                keyWordSort
+              )
             }
           >
             Click to load

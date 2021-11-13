@@ -52,7 +52,7 @@ const CardsFilms = ({
         justifyContent: "center",
         marginTop: "20px",
         paddingTop: "50px",
-        backgroundColor: "#ccc",
+        backgroundColor: "#F8FFAF",
       }}
     >
       {filmsData.map((cardData: FILM) => (

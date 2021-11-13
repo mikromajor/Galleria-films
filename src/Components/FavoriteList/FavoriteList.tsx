@@ -31,7 +31,7 @@ const FavoriteList = ({
         marginTop: "20px",
         justifyContent: "center",
         paddingTop: "50px",
-        backgroundColor: "#ccc",
+        backgroundColor: "#F8FFAF",
       }}
     >
       {favoriteList.map((cardData: FILM) => (
