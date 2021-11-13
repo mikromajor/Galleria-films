@@ -3,11 +3,11 @@ import cl from "./CheckGenre.module.css";
 const CheckGenre = ({
   label,
   genreId,
-  handlerGenre,
+  getGenre,
 }: {
   label: string;
   genreId: string;
-  handlerGenre: (a: string, b: boolean) => void;
+  getGenre: (a: string, b: boolean) => void;
 }) => {
   return (
     <form className={cl.form}>
@@ -19,7 +19,7 @@ const CheckGenre = ({
         value={genreId}
         onChange={(e) => {
           const { value, checked } = e.currentTarget;
-          handlerGenre(value, checked);
+          getGenre(value, checked);
         }}
       />
       <label htmlFor={label} className={cl.label}>

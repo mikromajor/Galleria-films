@@ -1,19 +1,16 @@
 const handlerGenre = (
-  genres: string[],
+  genres: string[] | [],
   setGenres: React.Dispatch<React.SetStateAction<string[]>>,
   valGenre: string,
   checked: boolean
 ) => {
   if (checked) {
-    if (!genres.some((item) => item === valGenre)) {
-      const updatedValues = [...genres, valGenre];
-      setGenres(updatedValues);
+    if (!genres.length) setGenres([valGenre]);
+    if (!genres.some((genre) => genre === valGenre)) {
+      setGenres([...genres, valGenre]);
     }
-  } else {
-    const updatedValues = genres.filter(
-      (el) => el !== valGenre
-    );
-    setGenres(updatedValues);
+  } else if (!checked) {
+    setGenres(genres.filter((genre) => genre !== valGenre));
   }
 };
 export default handlerGenre;

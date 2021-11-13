@@ -42,7 +42,7 @@ const HeadMenu = ({
 }) => {
   const [keyWordSort, setKeyWordSort] =
     useState<string>("");
-  const [genres, setGenres] = useState<string[]>([]);
+  const [genres, setGenres] = useState<string[] | []>([]);
 
   useEffect(() => {
     sorting(keyWordSort, filmsData, setFilmsData);
@@ -64,17 +64,19 @@ const HeadMenu = ({
             <Nav.Link href='#home'>Home</Nav.Link>
           </Nav.Item>
           <DropdownGenre
-            handlerGenre={(
+            getGenre={(
               valGenre: string,
               checked: boolean
-            ) =>
+            ) => {
+              console.log(valGenre, checked);
+
               handlerGenre(
                 genres,
                 setGenres,
                 valGenre,
                 checked
-              )
-            }
+              );
+            }}
           />
           <Button
             variant={"primary"}

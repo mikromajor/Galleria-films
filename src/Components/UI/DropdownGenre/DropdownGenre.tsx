@@ -2,9 +2,9 @@ import { NavDropdown } from "react-bootstrap";
 import CheckGenre from "../CheckGenre/CheckGenre";
 
 const DropdownGenre = ({
-  handlerGenre,
+  getGenre,
 }: {
-  handlerGenre: (v: string, c: boolean) => void;
+  getGenre: (v: string, c: boolean) => void;
 }) => {
   return (
     <NavDropdown
@@ -16,27 +16,27 @@ const DropdownGenre = ({
         <CheckGenre
           label='Action'
           genreId='28'
-          handlerGenre={handlerGenre}
+          getGenre={getGenre}
         />
         <CheckGenre
           label='Carton'
           genreId='16'
-          handlerGenre={handlerGenre}
+          getGenre={getGenre}
         />
         <CheckGenre
           label='Comedy'
           genreId='35'
-          handlerGenre={handlerGenre}
+          getGenre={getGenre}
         />
         <CheckGenre
           label='Fantasy'
           genreId='14'
-          handlerGenre={handlerGenre}
+          getGenre={getGenre}
         />
         <CheckGenre
           label='Fantastic'
           genreId='878'
-          handlerGenre={handlerGenre}
+          getGenre={getGenre}
         />
       </div>
     </NavDropdown>
