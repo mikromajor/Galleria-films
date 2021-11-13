@@ -1,0 +1,31 @@
+.cardBody {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  padding: 20px 0 !important;
+}
+
+.filmCard {
+  margin: 20px;
+  height: 670px;
+  transition: height 0.25s ease-in-out;
+}
+
+.filmCard__expanded {
+  height: auto;
+}
+
+.cardButtonsRow {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  padding-top: 20px;
+  margin-top: auto;
+}
+
+.card_btn_remove {
+  border-radius: 5px;
+  margin-left: auto;
+}

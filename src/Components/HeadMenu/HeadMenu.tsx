@@ -24,13 +24,11 @@ const HeadMenu = ({
   setFavoriteList,
   setIsLoading,
 }: {
-  filmsData: [] | ARR;
-  setFilmsData: React.Dispatch<
-    React.SetStateAction<[] | ARR>
-  >;
-  favoriteList: [] | ARR;
+  filmsData: ARR;
+  setFilmsData: React.Dispatch<React.SetStateAction<ARR>>;
+  favoriteList: ARR;
   setFavoriteList: React.Dispatch<
-    React.SetStateAction<ARR | []>
+    React.SetStateAction<ARR>
   >;
   setShowFavoriteList: React.Dispatch<
     React.SetStateAction<boolean>
@@ -42,7 +40,39 @@ const HeadMenu = ({
 }) => {
   const [keyWordSort, setKeyWordSort] =
     useState<string>("");
-  const [genres, setGenres] = useState<string[] | []>([]);
+  const [genres, setGenres] = useState<string[]>([]);
+
+  // const sorting = useCallback((
+  //   keyWordSort: string,
+  // ) => {
+
+  //   if (
+  //     keyWordSort &&
+  //     filmsList.length &&
+  //     filmsList.every(
+  //       (obj) =>
+  //         typeof obj[keyWordSort] === "string" || "number"
+  //     )
+  //   ) {
+  //     setFilmsList(
+  //       [...filmsList].sort((a, b)=> {
+  //         if (keyWordSort === "original_title") {
+  //           return b[keyWordSort]?.localeCompare() - a[keyWordSort]?.localeCompare();
+  //         } else if (
+  //           keyWordSort === "release_date" ||
+  //           "vote_average" ||
+  //           "vote_count"
+  //         ) {
+  //           return b[keyWordSort] - a[keyWordSort];
+  //         } else {
+  //           return 0;
+  //         }
+  //       })
+  //     );
+  //   } else {
+  //     setFilmsList([...filmsList]);
+  //   }
+  // }, [filmsList, setFilmsList]);
 
   useEffect(() => {
     sorting(keyWordSort, filmsData, setFilmsData);
@@ -103,7 +133,7 @@ const HeadMenu = ({
             type='checkbox'
             variant='outline-success'
             checked={showFavoriteList}
-            value='1'
+            value=''
             onChange={(e) =>
               setShowFavoriteList(e.currentTarget.checked)
             }

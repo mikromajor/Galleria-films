@@ -2,10 +2,8 @@ import { ARR } from "../../../constants";
 
 const sorting = (
   keyWordSort: string,
-  filmsList: [] | ARR,
-  setFilmsList: React.Dispatch<
-    React.SetStateAction<[] | ARR>
-  >
+  filmsList: ARR,
+  setFilmsList: React.Dispatch<React.SetStateAction<ARR>>
 ) => {
   if (
     keyWordSort &&
@@ -16,7 +14,7 @@ const sorting = (
     )
   ) {
     setFilmsList(
-      [...filmsList].sort((a, b): number => {
+      [...filmsList].sort((a, b) => {
         if (keyWordSort === "original_title") {
           return a[keyWordSort] > b[keyWordSort] ? 1 : -1;
         } else if (

@@ -1,32 +1,8 @@
-.card_marg {
-  margin: 20px;
-  padding-bottom: 45px;
-}
-
-.card_btn_expand {
-  position: absolute;
-  left: 40px;
-  bottom: 15px;
-}
-.card_btn_addList {
-  position: absolute;
-  right: 40px;
-  bottom: 15px;
-}
 .center {
   text-align: center;
   margin-top: 200px;
 }
-.chosen {
-  background-color: green;
-}
+
 .hidden {
   display: none;
-}
-.card_btn_remove {
-  display: block;
-  position: absolute;
-  right: 3px;
-  bottom: 20px;
-  border-radius: 5px;
 }

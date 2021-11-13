@@ -6,6 +6,7 @@ export const PATH_3 =
   "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1";
 
 export type FILM = {
+  id: number;
   [key: string]: string | number;
 };
 export type ARR = FILM[];

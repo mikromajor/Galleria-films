@@ -1,47 +1,51 @@
-import { useEffect } from "react";
-import {
-  Card,
-  Row,
-  Button,
-  CloseButton,
-} from "react-bootstrap";
-import { ARR, FILM, BASE_IMG_URL } from "../../constants";
-import {
-  deleteFromFavoriteList,
-  addToFavoriteList,
-} from "./handlers";
-import cl from "./FilmsList.module.css";
+import { useCallback } from "react";
+import { Row } from "react-bootstrap";
+import { Film } from "./components";
+import { ARR } from "../../constants";
 
+import cl from "./FilmsList.module.css";
 const CardsFilms = ({
   filmsData,
   favoriteList,
   setFavoriteList,
 }: {
-  filmsData: ARR | [];
-  favoriteList: ARR | [];
+  filmsData: ARR;
+  favoriteList: ARR;
   setFavoriteList: React.Dispatch<
-    React.SetStateAction<ARR | []>
+    React.SetStateAction<ARR>
   >;
 }) => {
-  useEffect(() => {
-    favoriteList.forEach((o) => {
-      const card = document.getElementById(`card_${o.id}`);
-      if (card) {
-        card.classList.remove("bg-primary");
-        card.style.backgroundColor = "rgb(25,125,84)";
-        const remove = document.getElementById(
-          `card_btn_remove_${o.id}`
-        );
-        remove?.classList.remove(cl.hidden);
-        remove?.classList.add(cl.card_btn_remove);
-      }
-    });
-  }, [favoriteList, setFavoriteList]);
+  const deleteFromFavoriteList = useCallback(
+    (id: number) => {
+      // option 1
+      // const updatedFavoriteList = favoriteList.filter(
+      //   (o) => o.id !== id
+      // );
+      // setFavoriteList(updatedFavoriteList);
 
-  const expandCard = (id: string): void => {
-    let d = document.querySelector(`#cardText_${id}`);
-    d?.classList.toggle(cl.hidden);
-  };
+      // option 2
+      setFavoriteList((prevState) =>
+        prevState.filter((o) => o.id !== id)
+      );
+    },
+    [setFavoriteList]
+  );
+
+  const addToFavoriteList = useCallback(
+    (id: number) => {
+      const currentFilm = filmsData.filter(
+        (o) => o.id === id
+      );
+
+      if (!favoriteList.length) {
+        setFavoriteList(currentFilm);
+        //checking the same FILM
+      } else if (favoriteList.every((o) => o.id !== id)) {
+        setFavoriteList([...favoriteList, ...currentFilm]);
+      }
+    },
+    [filmsData, favoriteList, setFavoriteList]
+  );
 
   return !filmsData.length ? (
     <h3 className={cl.center}>Please, choose genres</h3>
@@ -55,77 +59,22 @@ const CardsFilms = ({
         backgroundColor: "#F8FFAF",
       }}
     >
-      {filmsData.map((cardData: FILM) => (
-        <Card
-          style={{ width: "20rem" }}
-          bg={`primary ${cl.card_marg}`}
-          key={cardData.id}
-          id={"card_" + cardData.id}
-        >
-          <Card.Img
-            variant='top'
-            src={`${BASE_IMG_URL}${cardData.poster_path}`}
+      {filmsData.map((cardData) => {
+        const isInFavoritesArr = favoriteList.filter(
+          (film) => film.id === cardData.id
+        );
+        const isInFavorites = !!isInFavoritesArr.length;
+
+        return (
+          <Film
+            key={cardData.id}
+            film={cardData}
+            isInFavorites={isInFavorites}
+            deleteFromFavoriteList={deleteFromFavoriteList}
+            addToFavoriteList={addToFavoriteList}
           />
-          <Card.Body>
-            <Card.Title>{cardData.title}</Card.Title>
-            <Card.Subtitle className='mb-2'>
-              Vote average {cardData.vote_average}
-              <br />
-              Counts {cardData.vote_count}
-              <br />
-              Release date {cardData.release_date}
-              <br />
-            </Card.Subtitle>
-            <Card.Text
-              className={cl.hidden}
-              id={`cardText_${cardData.id}`}
-            >
-              {cardData.overview}
-            </Card.Text>
-
-            <Button
-              className={cl.card_btn_expand}
-              value={cardData.id}
-              variant='dark'
-              onClick={(e) => {
-                expandCard(e.currentTarget.value);
-              }}
-            >
-              Expand
-            </Button>
-
-            <Button
-              className={cl.card_btn_addList}
-              variant='success'
-              value={cardData.id}
-              onClick={(e) => {
-                addToFavoriteList(
-                  e.currentTarget.value,
-                  filmsData,
-                  favoriteList,
-                  setFavoriteList
-                );
-              }}
-            >
-              Add to favoriteList
-            </Button>
-            <CloseButton
-              style={{ border: "3px solid red" }}
-              variant='white'
-              id={`card_btn_remove_${cardData.id}`}
-              className={cl.hidden}
-              value={cardData.id}
-              onClick={(e) =>
-                deleteFromFavoriteList(
-                  e.currentTarget.value,
-                  favoriteList,
-                  setFavoriteList
-                )
-              }
-            />
-          </Card.Body>
-        </Card>
-      ))}
+        );
+      })}
     </Row>
   );
 };

@@ -20,8 +20,11 @@ const DropdownSort = ({
       onChange={(e) => {
         return setKeyWordSort(e.currentTarget.value);
       }}
+      defaultValue='0'
     >
-      <option value='0'>{defaultName}</option>
+      <option value='0' disabled>
+        {defaultName}
+      </option>
       {options.map((obj) => {
         return (
           <option key={obj.val} value={obj.val}>

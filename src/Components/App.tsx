@@ -7,10 +7,8 @@ import { Loader } from "./UI";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
-  const [filmsData, setFilmsData] = useState<ARR | []>([]);
-  const [favoriteList, setFavoriteList] = useState<
-    ARR | []
-  >([]);
+  const [filmsData, setFilmsData] = useState<ARR>([]);
+  const [favoriteList, setFavoriteList] = useState<ARR>([]);
   const [showFavoriteList, setShowFavoriteList] =
     useState(false);
 
@@ -44,4 +42,3 @@ function App() {
 }
 
 export default App;
-//не коректно работает select in DropdownSort
