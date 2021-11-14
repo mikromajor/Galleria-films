@@ -1,28 +1,30 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { Row } from "react-bootstrap";
 import { Film } from "./components";
-import { ARR } from "../../constants";
-
+import { FilmsListProps } from "./FilmList.Types";
+import sorting from "./hendlers/sorting";
 import cl from "./FilmsList.module.css";
 const CardsFilms = ({
   filmsData,
+  setFilmsData,
   favoriteList,
   setFavoriteList,
-}: {
-  filmsData: ARR;
-  favoriteList: ARR;
-  setFavoriteList: React.Dispatch<
-    React.SetStateAction<ARR>
-  >;
-}) => {
+  keyWordSort,
+  isLoading,
+}: FilmsListProps) => {
+  useEffect(() => {
+    if (!isLoading) {
+      sorting(keyWordSort, filmsData, setFilmsData);
+      sorting(keyWordSort, favoriteList, setFavoriteList);
+    }
+  }, [keyWordSort, isLoading]);
+
   const deleteFromFavoriteList = useCallback(
     (id: number) => {
       // option 1
-      // const updatedFavoriteList = favoriteList.filter(
+      // setFavoriteList( favoriteList.filter(
       //   (o) => o.id !== id
-      // );
-      // setFavoriteList(updatedFavoriteList);
-
+      // ));
       // option 2
       setFavoriteList((prevState) =>
         prevState.filter((o) => o.id !== id)
@@ -40,7 +42,8 @@ const CardsFilms = ({
       if (!favoriteList.length) {
         setFavoriteList(currentFilm);
         //checking the same FILM
-      } else if (favoriteList.every((o) => o.id !== id)) {
+      }
+      if (favoriteList.every((o) => o.id !== id)) {
         setFavoriteList([...favoriteList, ...currentFilm]);
       }
     },

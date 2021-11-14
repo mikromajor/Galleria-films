@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HeadMenu } from "./HeadMenu";
 import FavoriteList from "./FavoriteList/FavoriteList";
 import FilmsList from "./FilmsList/FilmsList";
@@ -7,21 +7,24 @@ import { Loader } from "./UI";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
+  const [keyWordSort, setKeyWordSort] =
+    useState<string>("");
   const [filmsData, setFilmsData] = useState<ARR>([]);
   const [favoriteList, setFavoriteList] = useState<ARR>([]);
   const [showFavoriteList, setShowFavoriteList] =
     useState(false);
+  console.log();
 
   return (
     <>
       <HeadMenu
-        filmsData={filmsData}
         setFilmsData={setFilmsData}
+        setIsLoading={setIsLoading}
+        keyWordSort={keyWordSort}
+        setKeyWordSort={setKeyWordSort}
         setShowFavoriteList={setShowFavoriteList}
         showFavoriteList={showFavoriteList}
-        favoriteList={favoriteList}
-        setFavoriteList={setFavoriteList}
-        setIsLoading={setIsLoading}
+        favoriteList={favoriteList} //set counter
       />
       {isLoading ? (
         <Loader />
@@ -33,8 +36,11 @@ function App() {
       ) : (
         <FilmsList
           filmsData={filmsData}
+          setFilmsData={setFilmsData}
           favoriteList={favoriteList}
           setFavoriteList={setFavoriteList}
+          keyWordSort={keyWordSort}
+          isLoading={isLoading}
         />
       )}
     </>

@@ -6,9 +6,9 @@ const FavoriteList = ({
   favoriteList,
   setFavoriteList,
 }: {
-  favoriteList: ARR | [];
+  favoriteList: ARR;
   setFavoriteList: React.Dispatch<
-    React.SetStateAction<ARR | []>
+    React.SetStateAction<ARR>
   >;
 }) => {
   if (!favoriteList.length) {

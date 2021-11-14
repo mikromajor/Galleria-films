@@ -1,4 +1,6 @@
+//import { useCallback } from "react";
 import { ARR } from "../../../constants";
+//import { useSortingProps } from "./useSorting.types";
 
 const sorting = (
   keyWordSort: string,
@@ -6,7 +8,7 @@ const sorting = (
   setFilmsList: React.Dispatch<React.SetStateAction<ARR>>
 ) => {
   if (
-    keyWordSort &&
+    keyWordSort.length &&
     filmsList.length &&
     filmsList.every(
       (obj) =>
@@ -17,7 +19,8 @@ const sorting = (
       [...filmsList].sort((a, b) => {
         if (keyWordSort === "original_title") {
           return a[keyWordSort] > b[keyWordSort] ? 1 : -1;
-        } else if (
+        }
+        if (
           keyWordSort === "release_date" ||
           "vote_average" ||
           "vote_count"
@@ -28,8 +31,6 @@ const sorting = (
         }
       })
     );
-  } else {
-    setFilmsList([...filmsList]);
   }
 };
 

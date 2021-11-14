@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Button,
   ToggleButton,
@@ -11,73 +11,21 @@ import {
   Counter,
 } from "../UI";
 import { getMovies } from "../../api";
-import { OPTIONS, ARR } from "../../constants";
-import { sorting, handlerGenre } from "./handlers";
+import { OPTIONS } from "../../constants";
+import { handlerGenre } from "./handlers";
+import { HeadMenuProps } from "./HeadMenu.types";
 import "./HeadMenu.css";
 
 const HeadMenu = ({
-  filmsData,
   setFilmsData,
+  keyWordSort,
+  setKeyWordSort,
   setShowFavoriteList,
   showFavoriteList,
   favoriteList,
-  setFavoriteList,
   setIsLoading,
-}: {
-  filmsData: ARR;
-  setFilmsData: React.Dispatch<React.SetStateAction<ARR>>;
-  favoriteList: ARR;
-  setFavoriteList: React.Dispatch<
-    React.SetStateAction<ARR>
-  >;
-  setShowFavoriteList: React.Dispatch<
-    React.SetStateAction<boolean>
-  >;
-  showFavoriteList: boolean;
-  setIsLoading: React.Dispatch<
-    React.SetStateAction<boolean>
-  >;
-}) => {
-  const [keyWordSort, setKeyWordSort] =
-    useState<string>("");
+}: HeadMenuProps) => {
   const [genres, setGenres] = useState<string[]>([]);
-
-  // const sorting = useCallback((
-  //   keyWordSort: string,
-  // ) => {
-
-  //   if (
-  //     keyWordSort &&
-  //     filmsList.length &&
-  //     filmsList.every(
-  //       (obj) =>
-  //         typeof obj[keyWordSort] === "string" || "number"
-  //     )
-  //   ) {
-  //     setFilmsList(
-  //       [...filmsList].sort((a, b)=> {
-  //         if (keyWordSort === "original_title") {
-  //           return b[keyWordSort]?.localeCompare() - a[keyWordSort]?.localeCompare();
-  //         } else if (
-  //           keyWordSort === "release_date" ||
-  //           "vote_average" ||
-  //           "vote_count"
-  //         ) {
-  //           return b[keyWordSort] - a[keyWordSort];
-  //         } else {
-  //           return 0;
-  //         }
-  //       })
-  //     );
-  //   } else {
-  //     setFilmsList([...filmsList]);
-  //   }
-  // }, [filmsList, setFilmsList]);
-
-  useEffect(() => {
-    sorting(keyWordSort, filmsData, setFilmsData);
-    sorting(keyWordSort, favoriteList, setFavoriteList);
-  }, [keyWordSort]);
 
   return (
     <Navbar
@@ -98,8 +46,6 @@ const HeadMenu = ({
               valGenre: string,
               checked: boolean
             ) => {
-              console.log(valGenre, checked);
-
               handlerGenre(
                 genres,
                 setGenres,
@@ -111,13 +57,7 @@ const HeadMenu = ({
           <Button
             variant={"primary"}
             onClick={() =>
-              getMovies(
-                genres,
-                setFilmsData,
-                setIsLoading,
-                sorting,
-                keyWordSort
-              )
+              getMovies(genres, setFilmsData, setIsLoading)
             }
           >
             Click to load
