@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { HeadMenu } from "./HeadMenu";
 import FavoriteList from "./FavoriteList/FavoriteList";
 import FilmsList from "./FilmsList/FilmsList";

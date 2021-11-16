@@ -1,10 +1,21 @@
 .form {
-  margin-top: 10px;
+  margin: 10px;
+  width: 100px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+.form:hover {
+  background-color: rgb(17, 36, 18);
+}
+.form:active {
+  background-color: rgb(11, 22, 12);
+}
+.checked {
+  text-decoration: tomato;
+  background-color: rgb(7, 61, 7);
 }
 .checkbox {
+  margin: 10px;
   cursor: pointer;
-}
-.label {
-  cursor: pointer;
-  margin-left: 5px;
 }

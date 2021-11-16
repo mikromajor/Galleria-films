@@ -1,8 +1,10 @@
 .counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   color: blue;
   background-color: #fff;
-  text-align: center;
-  text-justify: auto;
-  font-size: 1.5em;
+
+  font-size: 1.2em;
 }

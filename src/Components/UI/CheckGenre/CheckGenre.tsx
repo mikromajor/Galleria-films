@@ -1,4 +1,5 @@
-import cl from "./CheckGenre.module.css";
+import { useState } from "react";
+import style from "./CheckGenre.module.css";
 
 const CheckGenre = ({
   label,
@@ -9,22 +10,27 @@ const CheckGenre = ({
   genreId: string;
   getGenre: (a: string, b: boolean) => void;
 }) => {
+  const [checked, setChecked] = useState(false);
   return (
-    <form className={cl.form}>
+    <form
+      className={
+        checked
+          ? `${style.form} ${style.checked}`
+          : style.form
+      }
+      onClick={() => {
+        setChecked(!checked);
+        getGenre(genreId, checked);
+      }}
+    >
       <input
-        className={cl.checkbox}
+        className={style.checkbox}
         type='checkbox'
-        id={label}
-        name={label}
-        value={genreId}
-        onChange={(e) => {
-          const { value, checked } = e.currentTarget;
-          getGenre(value, checked);
-        }}
+        checked={checked}
+        readOnly
       />
-      <label htmlFor={label} className={cl.label}>
-        {label}
-      </label>
+
+      {label}
     </form>
   );
 };
