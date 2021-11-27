@@ -1,3 +1,14 @@
+# film-ok - it's pet project, popular movie library.
+
+This App is funtional single page applications using hooks React js , TypeScript, Bootstrap, api fetch js.
+
+The project displays the main menu, which is located at the top of the screen.
+This menu contains controls that user can use to select the genres of films, sorting method and make a request.
+If response successful - user will see cards with image and films information. Оtherwise, error information.
+There are control buttons at the bottom of the card. User can choose film to faivorite list. Or can read more information about films.
+By clicking on the 'favorite list' button, user can see a list of selected movies, or notification that the list is empty.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
