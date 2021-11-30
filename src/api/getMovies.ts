@@ -14,6 +14,7 @@ const getMovies = (
   >
 ) => {
   let url = "";
+  console.log("getMovies fire, genres are ->", genres);
 
   if (genres.length) {
     url = `${API_URL}/discover/movie?api_key=${API_KEY}${PATH_3}&with_genres=${genres.join()}`;

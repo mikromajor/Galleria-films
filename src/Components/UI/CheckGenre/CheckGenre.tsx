@@ -19,8 +19,9 @@ const CheckGenre = ({
           : style.form
       }
       onClick={() => {
+        console.log("checked", checked);
+        getGenre(genreId, !checked);
         setChecked(!checked);
-        getGenre(genreId, checked);
       }}
     >
       <input
