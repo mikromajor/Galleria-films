@@ -1,4 +1,4 @@
-# film-ok - it's pet project, popular movie library.
+# Gallerias-films - it's pet project, popular movie library.
 
 This App is funtional single page applications using hooks React js , TypeScript, Bootstrap, api fetch js.
 
