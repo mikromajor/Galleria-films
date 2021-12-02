@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Galleria-films/static/css/main.06cbdcd5.chunk.css",
+    "main.js": "/Galleria-films/static/js/main.52bfe4aa.chunk.js",
+    "main.js.map": "/Galleria-films/static/js/main.52bfe4aa.chunk.js.map",
+    "runtime-main.js": "/Galleria-films/static/js/runtime-main.f0a95337.js",
+    "runtime-main.js.map": "/Galleria-films/static/js/runtime-main.f0a95337.js.map",
+    "static/css/2.0a9ec390.chunk.css": "/Galleria-films/static/css/2.0a9ec390.chunk.css",
+    "static/js/2.32ca4e16.chunk.js": "/Galleria-films/static/js/2.32ca4e16.chunk.js",
+    "static/js/2.32ca4e16.chunk.js.map": "/Galleria-films/static/js/2.32ca4e16.chunk.js.map",
+    "index.html": "/Galleria-films/index.html",
+    "static/css/2.0a9ec390.chunk.css.map": "/Galleria-films/static/css/2.0a9ec390.chunk.css.map",
+    "static/css/main.06cbdcd5.chunk.css.map": "/Galleria-films/static/css/main.06cbdcd5.chunk.css.map",
+    "static/js/2.32ca4e16.chunk.js.LICENSE.txt": "/Galleria-films/static/js/2.32ca4e16.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f0a95337.js",
+    "static/css/2.0a9ec390.chunk.css",
+    "static/js/2.32ca4e16.chunk.js",
+    "static/css/main.06cbdcd5.chunk.css",
+    "static/js/main.52bfe4aa.chunk.js"
+  ]
+}
