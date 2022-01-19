@@ -8,6 +8,8 @@ If response successful - user will see cards with image and films information. Ð
 There are control buttons at the bottom of the card. User can choose film to faivorite list. Or can read more information about films.
 By clicking on the 'favorite list' button, user can see a list of selected movies, or notification that the list is empty.
 
+#DEMO : "https://mikromajor.github.io/Galleria-films/"
+
 
 # Getting Started with Create React App
 
