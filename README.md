@@ -1,6 +1,6 @@
 # Gallerias-films - it's pet project, popular movie library.
 
-This App is functional single page applications using hooks React js , TypeScript, Bootstrap, api fetch js.
+This App is functional single page applications using React hooks, TypeScript, Bootstrap, REST api fetch js.
 
 The project displays the main menu, which is located at the top of the screen.
 This menu contains controls that user can use to select the genres of films, sorting method and make a request.
